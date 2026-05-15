@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>神经语言网格 | AI档案馆</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="grid-overlay"></div>
+    <div class="code-rain"></div>
+    
+    <!-- Cyberpunk Mouse Effects -->
+    <div class="cyber-trail-container" id="cyberTrailContainer"></div>
+    <div class="silver-cursor" id="silverCursor"></div>
+
+    <div class="nav">
+        <div class="logo">AI流行语生命周期档案馆</div>
+        <div class="nav-link">
+            <a href="index.html">主控舱</a>
+            <a href="list.html">语料索引库</a>
+            <a href="neural-grid.html" class="active">神经语言网格</a>
+            <a href="data.html">开源数据节点</a>
+            <a href="about.html">系统协议</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="banner">
+            <h1>神经语言网格</h1>
+            <p>探索AI时代流行语的深层语义网络与演化图谱</p>
+        </div>
+
+        <!-- Timeline Deposition Layer -->
+        <div class="card card-damaged">
+            <h2>一、时序沉积层</h2>
+            <p class="section-desc">AI时代流行语时间线 · 横向可拖拽时间轴 + 热度气泡图</p>
+            <div class="timeline-container" id="timelineContainer">
+                <div class="timeline-slider" id="timelineSlider">
+                    <div class="timeline-track" id="timelineTrack"></div>
+                    <div class="timeline-handle" id="timelineHandle"></div>
+                    <div class="timeline-labels" id="timelineLabels"></div>
+                </div>
+                <div class="bubble-chart" id="bubbleChart"></div>
+            </div>
+        </div>
+
+        <!-- Semantic Co-occurrence Network -->
+        <div class="card card-damaged">
+            <h2>二、语义共生云</h2>
+            <p class="section-desc">共现词网络 · 力导向图展示流行语之间的语义关联</p>
+            <div class="network-chart" id="networkChart"></div>
+        </div>
+
+        <!-- AI Lexical Family Tree -->
+        <div class="card card-damaged">
+            <h2>三、硅基语族谱系</h2>
+            <p class="section-desc">AI相关流行语关系图 · 辐射状层级图展示词汇衍生关系</p>
+            <div class="tree-chart" id="treeChart"></div>
+        </div>
+    </div>
+
+    <footer>数字人文导论期末项目 | 2025 开源存档</footer>
+
+    <script src="cyber-cursor.js"></script>
+    <script>
+        // Timeline Bubble Chart with Year/Month Switching
+        let timelineChart = null;
+        let currentView = 'year'; // 'year' or 'month'
+        let selectedYear = null;
+
+        const timelineData = [
+            // 2019年
+            { name: '深度学习', value: [2019, 3, 72, '技术概念'], symbolSize: 42 },
+            { name: '神经网络', value: [2019, 6, 68, '技术概念'], symbolSize: 40 },
+            { name: 'AI芯片', value: [2019, 9, 75, '硬件技术'], symbolSize: 44 },
+            { name: '自动驾驶', value: [2019, 12, 80, '应用场景'], symbolSize: 47 },
+            
+            // 2020年
+            { name: 'GPT-3', value: [2020, 5, 95, '核心模型'], symbolSize: 58 },
+            { name: '计算机视觉', value: [2020, 3, 70, '技术领域'], symbolSize: 41 },
+            { name: '自然语言处理', value: [2020, 7, 78, '技术领域'], symbolSize: 45 },
+            { name: '数据科学', value: [2020, 10, 65, '技术概念'], symbolSize: 38 },
+            
+            // 2021年
+            { name: '元宇宙', value: [2021, 3, 88, '概念讨论'], symbolSize: 52 },
+            { name: '数字孪生', value: [2021, 6, 68, '技术概念'], symbolSize: 40 },
+            { name: 'AI绘画', value: [2021, 9, 55, '艺术创作'], symbolSize: 33 },
+            { name: '量子计算', value: [2021, 12, 72, '前沿技术'], symbolSize: 42 },
+            
+            // 2022年
+            { name: 'ChatGPT', value: [2022, 11, 99, '核心模型'], symbolSize: 65 },
+            { name: 'AI作画', value: [2022, 4, 62, '艺术创作'], symbolSize: 36 },
+            { name: 'AI写作', value: [2022, 7, 58, '内容创作'], symbolSize: 34 },
+            { name: '多模态', value: [2022, 10, 75, '技术概念'], symbolSize: 44 },
+            
+            // 2023年
+            { name: 'AI作画', value: [2023, 1, 65, '艺术创作'], symbolSize: 38 },
+            { name: 'AI写代码', value: [2023, 2, 72, '技术开发'], symbolSize: 42 },
+            { name: 'AI炼丹', value: [2023, 3, 68, '模型训练'], symbolSize: 40 },
+            { name: 'AI聊天', value: [2023, 4, 88, '日常对话'], symbolSize: 52 },
+            { name: 'AI打工人', value: [2023, 5, 78, '职场文化'], symbolSize: 45 },
+            { name: 'AI绘画', value: [2023, 6, 92, '艺术创作'], symbolSize: 55 },
+            { name: 'AI写论文', value: [2023, 7, 85, '学术研究'], symbolSize: 48 },
+            { name: 'AI翻译', value: [2023, 8, 75, '语言服务'], symbolSize: 44 },
+            { name: 'AI配音', value: [2023, 9, 62, '多媒体'], symbolSize: 36 },
+            { name: 'AI编曲', value: [2023, 10, 58, '音乐创作'], symbolSize: 34 },
+            { name: '深度伪造', value: [2023, 11, 70, '安全伦理'], symbolSize: 41 },
+            { name: 'AI生成', value: [2023, 12, 82, '内容创作'], symbolSize: 47 },
+            
+            // 2024年
+            { name: 'Prompt工程师', value: [2024, 1, 95, '技术岗位'], symbolSize: 58 },
+            { name: '提示词工程', value: [2024, 2, 88, '技术方法'], symbolSize: 51 },
+            { name: '智能体', value: [2024, 3, 80, 'AI应用'], symbolSize: 46 },
+            { name: '数字永生', value: [2024, 4, 68, '概念讨论'], symbolSize: 40 },
+            { name: 'AI女友', value: [2024, 5, 76, '社交应用'], symbolSize: 44 },
+            { name: 'AI导师', value: [2024, 6, 72, '教育应用'], symbolSize: 42 },
+            { name: 'AI摆烂', value: [2024, 7, 65, '职场态度'], symbolSize: 38 },
+            { name: '数字游民', value: [2024, 8, 58, '生活方式'], symbolSize: 34 },
+            { name: '幻觉攻击', value: [2024, 9, 55, '安全威胁'], symbolSize: 32 },
+            { name: '数据隐私', value: [2024, 10, 78, '隐私保护'], symbolSize: 45 },
+            { name: '模型幻觉', value: [2024, 11, 68, '技术问题'], symbolSize: 40 },
+            { name: 'RAG技术', value: [2024, 12, 75, '检索增强'], symbolSize: 43 },
+            
+            // 2025年
+            { name: 'AI洗脑', value: [2025, 1, 85, '文化影响'], symbolSize: 49 },
+            { name: '生成式AI', value: [2025, 2, 98, '核心技术'], symbolSize: 62 },
+            { name: 'AI接管', value: [2025, 3, 72, '科幻讨论'], symbolSize: 42 },
+            { name: 'AI创作', value: [2025, 4, 88, '内容生产'], symbolSize: 51 },
+            { name: 'AGI', value: [2025, 5, 70, '人工智能'], symbolSize: 41 },
+            { name: 'AI助手', value: [2025, 6, 92, '智能服务'], symbolSize: 54 },
+            { name: 'AI伦理', value: [2025, 7, 65, '伦理讨论'], symbolSize: 38 },
+            
+            // 2026年预测数据
+            { name: 'AI代理', value: [2026, 1, 82, '智能服务'], symbolSize: 47 },
+            { name: '脑机接口', value: [2026, 3, 75, '前沿技术'], symbolSize: 44 },
+            { name: 'AI情感', value: [2026, 5, 68, '人机交互'], symbolSize: 40 },
+            { name: 'AI教育', value: [2026, 7, 85, '教育应用'], symbolSize: 49 }
+        ];
+
+        const categoryColors = {
+            '技术概念': '#8B5CF6',
+            '核心模型': '#7C3AED',
+            '技术领域': '#3B82F6',
+            '前沿技术': '#0EA5E9',
+            '技术开发': '#06B6D4',
+            '模型训练': '#0891B2',
+            '艺术创作': '#10B981',
+            '内容创作': '#14B8A6',
+            '语言服务': '#84CC16',
+            '多媒体': '#A3E635',
+            '音乐创作': '#F59E0B',
+            '职场文化': '#F97316',
+            '职场态度': '#FB923C',
+            '社交应用': '#EC4899',
+            '教育应用': '#D946EF',
+            '概念讨论': '#A855F7',
+            '安全伦理': '#EF4444',
+            '安全威胁': '#F87171',
+            '隐私保护': '#6366F1',
+            '技术问题': '#8B5CF6',
+            '检索增强': '#3B82F6',
+            '文化影响': '#F59E0B',
+            '核心技术': '#8B5CF6',
+            '科幻讨论': '#6366F1',
+            '人工智能': '#06B6D4',
+            '智能服务': '#10B981',
+            '伦理讨论': '#EF4444',
+            '硬件技术': '#3B82F6',
+            '应用场景': '#10B981',
+            '数字孪生': '#8B5CF6',
+            '元宇宙': '#F59E0B',
+            '数据科学': '#06B6D4',
+            '多模态': '#8B5CF6',
+            '人机交互': '#EC4899'
+        };
+
+        function getYearData(year) {
+            return timelineData.filter(item => item.value[0] === year);
+        }
+
+        function getYearlyAggregatedData() {
+            const yearlyData = {};
+            timelineData.forEach(item => {
+                const year = item.value[0];
+                if (!yearlyData[year]) {
+                    yearlyData[year] = { count: 0, totalHot: 0, items: [] };
+                }
+                yearlyData[year].count++;
+                yearlyData[year].totalHot += item.value[2];
+                yearlyData[year].items.push(item);
+            });
+            
+            const result = [];
+            for (let year = 2019; year <= 2026; year++) {
+                if (yearlyData[year]) {
+                    const avgHot = Math.round(yearlyData[year].totalHot / yearlyData[year].count);
+                    result.push({
+                        year: year,
+                        avgHot: avgHot,
+                        count: yearlyData[year].count,
+                        items: yearlyData[year].items
+                    });
+                } else {
+                    result.push({ year: year, avgHot: 0, count: 0, items: [] });
+                }
+            }
+            return result;
+        }
+
+        function initTimelineChart() {
+            timelineChart = echarts.init(document.getElementById('bubbleChart'));
+            updateYearView();
+        }
+
+        function updateYearView() {
+            const yearlyData = getYearlyAggregatedData();
+            
+            // 准备折线图数据点
+            const lineData = yearlyData.map(d => [d.year, d.avgHot]);
+            
+            // 准备气泡数据（所有年份的所有流行语）
+            const bubbleData = timelineData.map(item => ({
+                name: item.name,
+                value: [item.value[0] + (item.value[1] - 1) / 12, item.value[2], item.value[3]],
+                symbolSize: item.symbolSize,
+                month: item.value[1],
+                category: item.value[3]
+            }));
+
+            const option = {
+                backgroundColor: 'transparent',
+                tooltip: {
+                    trigger: 'item',
+                    backgroundColor: 'rgba(75, 85, 99, 0.95)',
+                    borderColor: '#8B5CF6',
+                    borderWidth: 1,
+                    textStyle: { color: '#E8E4D9' },
+                    formatter: function(params) {
+                        if (params.seriesType === 'line') {
+                            const yearData = yearlyData.find(d => d.year === params.value[0]);
+                            return `<strong>${params.value[0]}年</strong><br/>
+                                    平均热度：${params.value[1]}<br/>
+                                    流行语数量：${yearData ? yearData.count : 0}`;
+                        } else {
+                            return `<strong>${params.name}</strong><br/>
+                                    时间：${params.value[0].toFixed(2)}年<br/>
+                                    热度：${params.value[1]}<br/>
+                                    类别：${params.value[2]}`;
+                        }
+                    }
+                },
+                legend: {
+                    data: [...new Set(timelineData.map(d => d.value[3]))],
+                    textStyle: { color: '#A1A1AA' },
+                    bottom: 0,
+                    type: 'scroll',
+                    orient: 'horizontal'
+                },
+                grid: {
+                    left: '5%',
+                    right: '5%',
+                    bottom: '20%',
+                    top: '10%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'value',
+                    name: '年份',
+                    nameTextStyle: { color: '#A1A1AA' },
+                    axisLine: { lineStyle: { color: '#4B5563' } },
+                    axisLabel: { color: '#A1A1AA', formatter: '{value}' },
+                    splitLine: { lineStyle: { color: 'rgba(75, 85, 99, 0.3)' } },
+                    min: 2018.8,
+                    max: 2026.2
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '热度指数',
+                    nameTextStyle: { color: '#A1A1AA' },
+                    axisLine: { lineStyle: { color: '#4B5563' } },
+                    axisLabel: { color: '#A1A1AA' },
+                    splitLine: { lineStyle: { color: 'rgba(75, 85, 99, 0.3)' } },
+                    min: 0,
+                    max: 100
+                },
+                series: [
+                    {
+                        type: 'line',
+                        name: '年度平均热度',
+                        data: lineData,
+                        smooth: true,
+                        symbol: 'circle',
+                        symbolSize: 10,
+                        lineStyle: {
+                            color: '#8B5CF6',
+                            width: 3,
+                            shadowColor: 'rgba(139, 92, 246, 0.5)',
+                            shadowBlur: 10
+                        },
+                        itemStyle: {
+                            color: '#8B5CF6',
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        },
+                        areaStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                { offset: 0, color: 'rgba(139, 92, 246, 0.3)' },
+                                { offset: 1, color: 'rgba(139, 92, 246, 0.05)' }
+                            ])
+                        }
+                    },
+                    {
+                        type: 'scatter',
+                        name: '流行语',
+                        data: bubbleData,
+                        symbolSize: function(params) {
+                            return params.symbolSize;
+                        },
+                        emphasis: {
+                            focus: 'series',
+                            itemStyle: {
+                                shadowBlur: 20,
+                                shadowColor: 'rgba(139, 92, 246, 0.5)'
+                            }
+                        },
+                        itemStyle: {
+                            color: function(params) {
+                                return categoryColors[params.value[2]] || '#8B5CF6';
+                            },
+                            shadowBlur: 15,
+                            shadowColor: 'rgba(139, 92, 246, 0.4)'
+                        }
+                    }
+                ]
+            };
+
+            timelineChart.setOption(option, true);
+        }
+
+        function updateMonthView(year) {
+            selectedYear = year;
+            const yearData = getYearData(year);
+            
+            // 按月份排序
+            yearData.sort((a, b) => a.value[1] - b.value[1]);
+            
+            const lineData = [];
+            const bubbleData = [];
+            
+            // 填充所有月份
+            for (let month = 1; month <= 12; month++) {
+                const monthData = yearData.filter(item => item.value[1] === month);
+                if (monthData.length > 0) {
+                    const avgHot = Math.round(monthData.reduce((sum, item) => sum + item.value[2], 0) / monthData.length);
+                    lineData.push([month, avgHot]);
+                    
+                    monthData.forEach(item => {
+                        bubbleData.push({
+                            name: item.name,
+                            value: [item.value[1], item.value[2], item.value[3]],
+                            symbolSize: item.symbolSize,
+                            category: item.value[3]
+                        });
+                    });
+                } else {
+                    lineData.push([month, 0]);
+                }
+            }
+
+            const option = {
+                backgroundColor: 'transparent',
+                tooltip: {
+                    trigger: 'item',
+                    backgroundColor: 'rgba(75, 85, 99, 0.95)',
+                    borderColor: '#8B5CF6',
+                    borderWidth: 1,
+                    textStyle: { color: '#E8E4D9' },
+                    formatter: function(params) {
+                        if (params.seriesType === 'line') {
+                            return `<strong>${year}年${params.value[0]}月</strong><br/>平均热度：${params.value[1]}`;
+                        } else {
+                            return `<strong>${params.name}</strong><br/>
+                                    时间：${year}年${params.value[0]}月<br/>
+                                    热度：${params.value[1]}<br/>
+                                    类别：${params.value[2]}`;
+                        }
+                    }
+                },
+                legend: {
+                    data: [...new Set(yearData.map(d => d.value[3]))],
+                    textStyle: { color: '#A1A1AA' },
+                    bottom: 0,
+                    type: 'scroll',
+                    orient: 'horizontal'
+                },
+                grid: {
+                    left: '5%',
+                    right: '5%',
+                    bottom: '20%',
+                    top: '10%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'value',
+                    name: '月份',
+                    nameTextStyle: { color: '#A1A1AA' },
+                    axisLine: { lineStyle: { color: '#4B5563' } },
+                    axisLabel: { color: '#A1A1AA', formatter: '{value}月' },
+                    splitLine: { lineStyle: { color: 'rgba(75, 85, 99, 0.3)' } },
+                    min: 0.5,
+                    max: 12.5
+                },
+                yAxis: {
+                    type: 'value',
+                    name: '热度指数',
+                    nameTextStyle: { color: '#A1A1AA' },
+                    axisLine: { lineStyle: { color: '#4B5563' } },
+                    axisLabel: { color: '#A1A1AA' },
+                    splitLine: { lineStyle: { color: 'rgba(75, 85, 99, 0.3)' } },
+                    min: 0,
+                    max: 100
+                },
+                series: [
+                    {
+                        type: 'line',
+                        name: `${year}年月平均热度`,
+                        data: lineData,
+                        smooth: true,
+                        symbol: 'circle',
+                        symbolSize: 10,
+                        lineStyle: {
+                            color: '#06B6D4',
+                            width: 3,
+                            shadowColor: 'rgba(6, 182, 212, 0.5)',
+                            shadowBlur: 10
+                        },
+                        itemStyle: {
+                            color: '#06B6D4',
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        },
+                        areaStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                { offset: 0, color: 'rgba(6, 182, 212, 0.3)' },
+                                { offset: 1, color: 'rgba(6, 182, 212, 0.05)' }
+                            ])
+                        }
+                    },
+                    {
+                        type: 'scatter',
+                        name: '流行语',
+                        data: bubbleData,
+                        symbolSize: function(params) {
+                            return params.symbolSize;
+                        },
+                        emphasis: {
+                            focus: 'series',
+                            itemStyle: {
+                                shadowBlur: 20,
+                                shadowColor: 'rgba(6, 182, 212, 0.5)'
+                            }
+                        },
+                        itemStyle: {
+                            color: function(params) {
+                                return categoryColors[params.value[2]] || '#8B5CF6';
+                            },
+                            shadowBlur: 15,
+                            shadowColor: 'rgba(6, 182, 212, 0.4)'
+                        }
+                    }
+                ]
+            };
+
+            timelineChart.setOption(option, true);
+        }
+
+        // Timeline Slider with Year Selection
+        function initTimelineSlider() {
+            const slider = document.getElementById('timelineSlider');
+            const track = document.getElementById('timelineTrack');
+            const labels = document.getElementById('timelineLabels');
+            
+            const years = ['2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'];
+            
+            labels.innerHTML = '';
+            years.forEach((year, index) => {
+                const label = document.createElement('div');
+                label.className = 'timeline-label';
+                label.textContent = year;
+                label.style.left = `${(index / (years.length - 1)) * 100}%`;
+                label.addEventListener('click', () => {
+                        // 清除之前的选中状态
+                        document.querySelectorAll('.timeline-label').forEach(l => l.classList.remove('active'));
+                        label.classList.add('active');
+                        
+                        // 更新视图为月份视图
+                        currentView = 'month';
+                        updateMonthView(parseInt(year));
+                        
+                        // 显示返回按钮
+                        const backBtn = document.querySelector('.timeline-back-btn');
+                        if (backBtn) {
+                            backBtn.style.display = 'block';
+                        }
+                    });
+                labels.appendChild(label);
+            });
+
+            // 添加返回按钮
+            const backBtn = document.createElement('div');
+            backBtn.className = 'timeline-back-btn';
+            backBtn.textContent = '← 返回年度视图';
+            backBtn.style.display = 'none';
+            backBtn.addEventListener('click', () => {
+                document.querySelectorAll('.timeline-label').forEach(l => l.classList.remove('active'));
+                backBtn.style.display = 'none';
+                currentView = 'year';
+                selectedYear = null;
+                updateYearView();
+            });
+            slider.appendChild(backBtn);
+
+            // 暴露backBtn供外部使用
+            window.timelineBackBtn = backBtn;
+        }
+
+        function showBackButton() {
+            const backBtn = document.querySelector('.timeline-back-btn');
+            if (backBtn) {
+                backBtn.style.display = 'block';
+            }
+        }
+
+        window.updateYearView = updateYearView;
+        window.updateMonthView = updateMonthView;
+        window.showBackButton = showBackButton;
+
+        // Force-directed Network Chart - Expanded Data
+        function initNetworkChart() {
+            const chart = echarts.init(document.getElementById('networkChart'));
+            
+            const nodes = [
+                { name: 'AI', category: 0, symbolSize: 80 },
+                { name: '生成式AI', category: 0, symbolSize: 70 },
+                { name: '大语言模型', category: 0, symbolSize: 65 },
+                { name: 'AI作画', category: 1, symbolSize: 45 },
+                { name: 'AI写代码', category: 1, symbolSize: 42 },
+                { name: 'AI写论文', category: 1, symbolSize: 40 },
+                { name: 'AI聊天', category: 1, symbolSize: 50 },
+                { name: 'AI配音', category: 1, symbolSize: 38 },
+                { name: 'AI编曲', category: 1, symbolSize: 35 },
+                { name: 'Prompt工程师', category: 2, symbolSize: 52 },
+                { name: '提示词工程', category: 2, symbolSize: 48 },
+                { name: 'AI炼丹', category: 2, symbolSize: 44 },
+                { name: '智能体', category: 2, symbolSize: 46 },
+                { name: 'RAG技术', category: 2, symbolSize: 40 },
+                { name: 'AI打工人', category: 3, symbolSize: 45 },
+                { name: 'AI摆烂', category: 3, symbolSize: 38 },
+                { name: 'AI导师', category: 3, symbolSize: 42 },
+                { name: 'AI女友', category: 3, symbolSize: 40 },
+                { name: 'AI洗脑', category: 3, symbolSize: 36 },
+                { name: '数字永生', category: 3, symbolSize: 35 },
+                { name: '数字游民', category: 3, symbolSize: 34 },
+                { name: '深度伪造', category: 4, symbolSize: 42 },
+                { name: '幻觉攻击', category: 4, symbolSize: 38 },
+                { name: '数据隐私', category: 4, symbolSize: 44 },
+                { name: '模型幻觉', category: 4, symbolSize: 36 }
+            ];
+
+            const links = [
+                { source: 'AI', target: '生成式AI', value: 10 },
+                { source: 'AI', target: '大语言模型', value: 10 },
+                { source: '生成式AI', target: 'AI作画', value: 9 },
+                { source: '生成式AI', target: 'AI写代码', value: 8 },
+                { source: '生成式AI', target: 'AI写论文', value: 8 },
+                { source: '生成式AI', target: 'AI聊天', value: 9 },
+                { source: '生成式AI', target: '智能体', value: 8 },
+                { source: '大语言模型', target: 'AI聊天', value: 9 },
+                { source: '大语言模型', target: 'Prompt工程师', value: 8 },
+                { source: '大语言模型', target: '提示词工程', value: 9 },
+                { source: 'Prompt工程师', target: '提示词工程', value: 10 },
+                { source: 'Prompt工程师', target: 'AI炼丹', value: 7 },
+                { source: 'AI炼丹', target: '智能体', value: 8 },
+                { source: '智能体', target: 'RAG技术', value: 7 },
+                { source: 'AI作画', target: 'AI配音', value: 6 },
+                { source: 'AI作画', target: 'AI编曲', value: 5 },
+                { source: 'AI聊天', target: 'AI导师', value: 7 },
+                { source: 'AI聊天', target: 'AI女友', value: 6 },
+                { source: 'AI打工人', target: 'AI摆烂', value: 7 },
+                { source: 'AI打工人', target: '数字游民', value: 6 },
+                { source: 'AI导师', target: 'AI写论文', value: 5 },
+                { source: 'AI洗脑', target: 'AI作画', value: 5 },
+                { source: 'AI洗脑', target: 'AI聊天', value: 6 },
+                { source: '数字永生', target: 'AI女友', value: 5 },
+                { source: '深度伪造', target: 'AI作画', value: 6 },
+                { source: '深度伪造', target: '幻觉攻击', value: 8 },
+                { source: '幻觉攻击', target: '模型幻觉', value: 7 },
+                { source: '数据隐私', target: 'AI聊天', value: 6 },
+                { source: '数据隐私', target: '深度伪造', value: 7 },
+                { source: 'AI写代码', target: '智能体', value: 6 }
+            ];
+
+            const categories = [
+                { name: '核心概念' },
+                { name: '创作应用' },
+                { name: '技术方法' },
+                { name: '社会文化' },
+                { name: '安全伦理' }
+            ];
+
+            const option = {
+                backgroundColor: 'transparent',
+                tooltip: {
+                    trigger: 'item',
+                    backgroundColor: 'rgba(75, 85, 99, 0.95)',
+                    borderColor: '#8B5CF6',
+                    borderWidth: 1,
+                    textStyle: { color: '#E8E4D9' },
+                    formatter: function(params) {
+                        if (params.dataType === 'node') {
+                            return `<strong>${params.name}</strong><br/>类别：${categories[params.data.category].name}`;
+                        } else if (params.dataType === 'edge') {
+                            return `${params.data.source} ↔ ${params.data.target}<br/>关联强度：${params.data.value}`;
+                        }
+                    }
+                },
+                legend: {
+                    data: categories.map(c => c.name),
+                    textStyle: { color: '#A1A1AA' },
+                    top: 10
+                },
+                series: [{
+                    type: 'graph',
+                    layout: 'force',
+                    data: nodes,
+                    links: links,
+                    categories: categories,
+                    roam: true,
+                    draggable: true,
+                    force: {
+                        repulsion: 350,
+                        gravity: 0.15,
+                        edgeLength: [60, 250]
+                    },
+                    emphasis: {
+                        focus: 'adjacency',
+                        lineStyle: {
+                            width: 4
+                        }
+                    },
+                    lineStyle: {
+                        color: 'rgba(139, 92, 246, 0.4)',
+                        width: function(params) {
+                            return params.data.value / 2.5;
+                        },
+                        curveness: 0.25
+                    },
+                    itemStyle: {
+                        color: function(params) {
+                            const colors = ['#8B5CF6', '#3B82F6', '#06B6D4', '#10B981', '#F59E0B'];
+                            return colors[params.data.category];
+                        },
+                        shadowBlur: 20,
+                        shadowColor: 'rgba(139, 92, 246, 0.5)'
+                    },
+                    label: {
+                        show: true,
+                        position: 'bottom',
+                        color: '#E8E4D9',
+                        fontSize: 12,
+                        fontWeight: 500
+                    }
+                }]
+            };
+
+            chart.setOption(option);
+            window.addEventListener('resize', () => chart.resize());
+        }
+
+        // Tree Chart - Lexical Derivation Genealogy
+        function initTreeChart() {
+            const chart = echarts.init(document.getElementById('treeChart'));
+            
+            const data = {
+                name: 'AI',
+                symbolSize: 55,
+                itemStyle: { color: '#00FFFF', borderWidth: 3 },
+                children: [
+                    {
+                        name: '生成式AI',
+                        symbolSize: 40,
+                        itemStyle: { color: '#8B5CF6' },
+                        children: [
+                            {
+                                name: 'AI内容创作',
+                                symbolSize: 18,
+                                itemStyle: { color: '#3B82F6' },
+                                children: [
+                                    { name: 'AI作画', value: 92, symbolSize: 10 },
+                                    { name: 'AI写作', value: 88, symbolSize: 10 },
+                                    { name: 'AI编曲', value: 78, symbolSize: 9 },
+                                    { name: 'AI配音', value: 72, symbolSize: 9 },
+                                    { name: 'AI视频', value: 85, symbolSize: 10 }
+                                ]
+                            },
+                            {
+                                name: 'AI代码开发',
+                                symbolSize: 18,
+                                itemStyle: { color: '#3B82F6' },
+                                children: [
+                                    { name: 'AI写代码', value: 90, symbolSize: 10 },
+                                    { name: 'Copilot', value: 85, symbolSize: 10 },
+                                    { name: 'AI调试', value: 70, symbolSize: 8 }
+                                ]
+                            },
+                            {
+                                name: 'AI对话',
+                                symbolSize: 18,
+                                itemStyle: { color: '#3B82F6' },
+                                children: [
+                                    { name: 'AI聊天', value: 95, symbolSize: 10 },
+                                    { name: 'AI问答', value: 82, symbolSize: 9 },
+                                    { name: 'AI客服', value: 75, symbolSize: 8 }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: '大语言模型',
+                        symbolSize: 40,
+                        itemStyle: { color: '#8B5CF6' },
+                        children: [
+                            {
+                                name: 'GPT系列',
+                                symbolSize: 18,
+                                itemStyle: { color: '#3B82F6' },
+                                children: [
+                                    { name: 'ChatGPT', value: 99, symbolSize: 12 },
+                                    { name: 'GPT-4', value: 96, symbolSize: 11 },
+                                    { name: 'GPT-4o', value: 92, symbolSize: 11 }
+                                ]
+                            },
+                            {
+                                name: 'Claude系列',
+                                symbolSize: 18,
+                                itemStyle: { color: '#3B82F6' },
+                                children: [
+                                    { name: 'Claude 2', value: 88, symbolSize: 10 },
+                                    { name: 'Claude 3', value: 90, symbolSize: 10 }
+                                ]
+                            },
+                            {
+                                name: '国产大模型',
+                                symbolSize: 18,
+                                itemStyle: { color: '#3B82F6' },
+                                children: [
+                                    { name: '文心一言', value: 85, symbolSize: 10 },
+                                    { name: '通义千问', value: 82, symbolSize: 10 },
+                                    { name: '讯飞星火', value: 78, symbolSize: 9 },
+                                    { name: '智谱ChatGLM', value: 80, symbolSize: 9 }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: 'Agent智能体',
+                        symbolSize: 40,
+                        itemStyle: { color: '#8B5CF6' },
+                        children: [
+                            {
+                                name: '自主Agent',
+                                symbolSize: 18,
+                                itemStyle: { color: '#3B82F6' },
+                                children: [
+                                    { name: 'AutoGPT', value: 88, symbolSize: 10 },
+                                    { name: 'BabyAGI', value: 75, symbolSize: 9 },
+                                    { name: 'AgentGPT', value: 78, symbolSize: 9 }
+                                ]
+                            },
+                            {
+                                name: 'AI助手',
+                                symbolSize: 18,
+                                itemStyle: { color: '#3B82F6' },
+                                children: [
+                                    { name: 'Siri', value: 85, symbolSize: 10 },
+                                    { name: '小爱同学', value: 80, symbolSize: 9 },
+                                    { name: '小度', value: 75, symbolSize: 8 }
+                                ]
+                            },
+                            {
+                                name: 'AI代理',
+                                symbolSize: 18,
+                                itemStyle: { color: '#3B82F6' },
+                                children: [
+                                    { name: 'AI代理', value: 82, symbolSize: 9 },
+                                    { name: 'MCP协议', value: 70, symbolSize: 8 }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: 'Prompt工程',
+                        symbolSize: 40,
+                        itemStyle: { color: '#8B5CF6' },
+                        children: [
+                            {
+                                name: '提示词设计',
+                                symbolSize: 18,
+                                itemStyle: { color: '#3B82F6' },
+                                children: [
+                                    { name: 'Prompt工程师', value: 95, symbolSize: 10 },
+                                    { name: '提示词工程', value: 85, symbolSize: 10 },
+                                    { name: '思维链', value: 78, symbolSize: 9 }
+                                ]
+                            },
+                            {
+                                name: '模型优化',
+                                symbolSize: 18,
+                                itemStyle: { color: '#3B82F6' },
+                                children: [
+                                    { name: 'AI炼丹', value: 80, symbolSize: 9 },
+                                    { name: 'RAG检索增强', value: 82, symbolSize: 10 },
+                                    { name: '微调技术', value: 75, symbolSize: 8 }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: '深度学习技术',
+                        symbolSize: 40,
+                        itemStyle: { color: '#8B5CF6' },
+                        children: [
+                            {
+                                name: '神经网络架构',
+                                symbolSize: 18,
+                                itemStyle: { color: '#3B82F6' },
+                                children: [
+                                    { name: 'Transformer', value: 92, symbolSize: 10 },
+                                    { name: '注意力机制', value: 88, symbolSize: 10 },
+                                    { name: 'Diffusion扩散', value: 85, symbolSize: 9 }
+                                ]
+                            },
+                            {
+                                name: '核心技术',
+                                symbolSize: 18,
+                                itemStyle: { color: '#3B82F6' },
+                                children: [
+                                    { name: 'AGI通用人工智能', value: 90, symbolSize: 10 },
+                                    { name: '多模态', value: 88, symbolSize: 10 },
+                                    { name: '对齐技术', value: 75, symbolSize: 8 }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: '社会文化影响',
+                        symbolSize: 40,
+                        itemStyle: { color: '#8B5CF6' },
+                        children: [
+                            {
+                                name: 'AI职场文化',
+                                symbolSize: 18,
+                                itemStyle: { color: '#3B82F6' },
+                                children: [
+                                    { name: 'AI打工人', value: 85, symbolSize: 9 },
+                                    { name: 'AI摆烂', value: 72, symbolSize: 8 },
+                                    { name: '数字游民', value: 68, symbolSize: 8 }
+                                ]
+                            },
+                            {
+                                name: 'AI社会现象',
+                                symbolSize: 18,
+                                itemStyle: { color: '#3B82F6' },
+                                children: [
+                                    { name: 'AI洗脑', value: 80, symbolSize: 9 },
+                                    { name: 'AI接管担忧', value: 75, symbolSize: 8 },
+                                    { name: '赛博朋克', value: 70, symbolSize: 8 }
+                                ]
+                            },
+                            {
+                                name: 'AI数字身份',
+                                symbolSize: 18,
+                                itemStyle: { color: '#3B82F6' },
+                                children: [
+                                    { name: '数字永生', value: 78, symbolSize: 9 },
+                                    { name: 'AI女友', value: 82, symbolSize: 9 },
+                                    { name: 'AI分身', value: 68, symbolSize: 8 }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        name: '安全与伦理',
+                        symbolSize: 40,
+                        itemStyle: { color: '#8B5CF6' },
+                        children: [
+                            {
+                                name: 'AI安全问题',
+                                symbolSize: 18,
+                                itemStyle: { color: '#3B82F6' },
+                                children: [
+                                    { name: '深度伪造', value: 88, symbolSize: 10 },
+                                    { name: '幻觉攻击', value: 72, symbolSize: 8 },
+                                    { name: '数据隐私', value: 85, symbolSize: 9 }
+                                ]
+                            },
+                            {
+                                name: '伦理问题',
+                                symbolSize: 18,
+                                itemStyle: { color: '#3B82F6' },
+                                children: [
+                                    { name: '算法偏见', value: 78, symbolSize: 9 },
+                                    { name: '模型幻觉', value: 75, symbolSize: 8 },
+                                    { name: 'AI伦理', value: 80, symbolSize: 9 }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            };
+
+            const option = {
+                backgroundColor: 'transparent',
+                tooltip: {
+                    trigger: 'item',
+                    backgroundColor: 'rgba(75, 85, 99, 0.95)',
+                    borderColor: '#8B5CF6',
+                    borderWidth: 1,
+                    textStyle: { color: '#E8E4D9' },
+                    formatter: function(params) {
+                        if (params.data.children) {
+                            return `<strong>${params.name}</strong><br/><span style="color:#A78BFA">↳ 分支节点</span>`;
+                        }
+                        return `<strong>${params.name}</strong><br/>热度指数：${params.data.value || 'N/A'}`;
+                    }
+                },
+                series: [{
+                    type: 'tree',
+                    data: [data],
+                    symbol: 'circle',
+                    label: {
+                        show: true,
+                        position: 'right',
+                        color: '#E8E4D9',
+                        fontSize: 12,
+                        fontWeight: 'bold',
+                        formatter: function(params) {
+                            return params.name;
+                        }
+                    },
+                    leaves: {
+                        label: {
+                            position: 'right',
+                            color: '#72BBE9',
+                            fontSize: 11
+                        }
+                    },
+                    emphasis: {
+                        focus: 'descendant',
+                        itemStyle: {
+                            shadowBlur: 30,
+                            shadowColor: 'rgba(139, 92, 246, 0.8)'
+                        }
+                    },
+                    expandAndCollapse: true,
+                    animation: true,
+                    animationDuration: 800,
+                    animationEasing: 'cubicInOut',
+                    layout: 'orthogonal',
+                    orient: 'LR',
+                    position: 'left',
+                    itemStyle: {
+                        borderColor: '#fff',
+                        borderWidth: 2,
+                        shadowBlur: 20,
+                        shadowColor: 'rgba(139, 92, 246, 0.5)'
+                    },
+                    lineStyle: {
+                        color: 'rgba(139, 92, 246, 0.5)',
+                        width: 2,
+                        curveness: 0.3
+                    }
+                }]
+            };
+
+            chart.setOption(option, true);
+            window.addEventListener('resize', () => chart.resize());
+        }
+
+        // Initialize all charts when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                initTimelineSlider();
+                initTimelineChart();
+                initNetworkChart();
+                initTreeChart();
+            }, 100);
+        });
+    </script>
+</body>
+</html>

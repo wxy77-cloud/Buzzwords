@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>流行语总览 | AI档案馆</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="grid-overlay"></div>
+    <div class="code-rain"></div>
+    
+    <!-- Cyberpunk Mouse Effects -->
+    <div class="cyber-trail-container" id="cyberTrailContainer"></div>
+    <div class="silver-cursor" id="silverCursor"></div>
+
+    <div class="nav">
+        <div class="logo">AI流行语生命周期档案馆</div>
+        <div class="nav-link">
+            <a href="index.html">主控舱</a>
+            <a href="list.html">语料索引库</a>
+            <a href="neural-grid.html">神经语言网格</a>
+            <a href="data.html">开源数据节点</a>
+            <a href="about.html">系统协议</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <h2>流行语筛选</h2>
+            <div class="filter" style="margin-top:1rem;">
+                <select id="yearFilter">
+                    <option value="all">全部年份</option>
+                    <option value="2023">2023年</option>
+                    <option value="2024">2024年</option>
+                    <option value="2025">2025年</option>
+                </select>
+                <select id="typeFilter">
+                    <option value="all">全部类型</option>
+                    <option value="职场">职场类</option>
+                    <option value="情绪">情绪类</option>
+                    <option value="技术">技术类</option>
+                    <option value="社交">社交类</option>
+                    <option value="哲学">哲学类</option>
+                    <option value="社会">社会类</option>
+                    <option value="教育">教育类</option>
+                </select>
+                <input type="text" id="keywordSearch" placeholder="搜索流行语关键词">
+                <button class="btn" id="searchBtn">搜索</button>
+            </div>
+        </div>
+
+        <!-- 搜索结果区域 -->
+        <div class="card" id="searchResults" style="display:none;">
+            <h2>搜索结果</h2>
+            <div id="resultsContainer" class="fossil-cards" style="margin-top:1rem;"></div>
+        </div>
+
+        <div class="card">
+            <h2>数据集总览</h2>
+            <div class="stat-grid" style="margin-top:1rem;">
+                <div class="stat-card"><h3>18条</h3><p>累计收录流行语</p></div>
+                <div class="stat-card"><h3>B站</h3><p>核心传播平台（42%）</p></div>
+                <div class="stat-card"><h3>效率焦虑</h3><p>高频社会情绪（58%）</p></div>
+            </div>
+        </div>
+
+        <div class="geology-section">
+            <div class="geology-header">
+                <h2>流行语地质层</h2>
+                <p class="geology-desc">滚动以探索AI流行语的考古层序</p>
+            </div>
+            
+            <div class="geology-timeline">
+                <div class="stratum stratum-2025">
+                    <div class="stratum-label">
+                        <span class="era-badge">2025</span>
+                        <span class="era-title">表层·新生代</span>
+                        <span class="depth-indicator">深度: 0-15cm</span>
+                    </div>
+                    <div class="fossil-cards">
+                        <div class="fossil-card surface">
+                            <span class="status-badge status-new">新生期</span>
+                            <span class="archive-id">AI-2025-001</span>
+                            <h3>AI洗脑</h3>
+                            <p>情绪 | 深度: 5cm</p>
+                            <button class="btn" onclick="location.href='detail-ai-brainwash.html'">发掘详情</button>
+                        </div>
+                        <div class="fossil-card surface">
+                            <span class="status-badge status-new">新生期</span>
+                            <span class="archive-id">AI-2025-002</span>
+                            <h3>AI女友</h3>
+                            <p>社交 | 深度: 8cm</p>
+                            <button class="btn" onclick="location.href='detail-ai-girlfriend.html'">发掘详情</button>
+                        </div>
+                        <div class="fossil-card surface">
+                            <span class="status-badge status-peak">鼎盛期</span>
+                            <span class="archive-id">AI-2025-003</span>
+                            <h3>生成式AI</h3>
+                            <p>技术 | 深度: 12cm</p>
+                            <button class="btn" onclick="location.href='detail-generative.html'">发掘详情</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stratum-separator">
+                    <div class="rock-layer"></div>
+                    <span class="excavation-line">— 考古发掘线 —</span>
+                    <div class="rock-layer"></div>
+                </div>
+
+                <div class="stratum stratum-2024">
+                    <div class="stratum-label">
+                        <span class="era-badge">2024</span>
+                        <span class="era-title">中层·中生代</span>
+                        <span class="depth-indicator">深度: 15-40cm</span>
+                    </div>
+                    <div class="fossil-cards">
+                        <div class="fossil-card mid-depth">
+                            <span class="status-badge status-decline">衰减期</span>
+                            <span class="archive-id">AI-2024-001</span>
+                            <h3>Prompt工程师</h3>
+                            <p>技术 | 深度: 18cm</p>
+                            <button class="btn" onclick="location.href='detail-prompt.html'">发掘详情</button>
+                        </div>
+                        <div class="fossil-card mid-depth">
+                            <span class="status-badge status-decline">衰减期</span>
+                            <span class="archive-id">AI-2024-002</span>
+                            <h3>数字游民</h3>
+                            <p>职场 | 深度: 22cm</p>
+                            <button class="btn" onclick="location.href='detail-digital-nomad.html'">发掘详情</button>
+                        </div>
+                        <div class="fossil-card mid-depth">
+                            <span class="status-badge status-peak">鼎盛期</span>
+                            <span class="archive-id">AI-2024-003</span>
+                            <h3>数字永生</h3>
+                            <p>哲学 | 深度: 26cm</p>
+                            <button class="btn" onclick="location.href='detail-digital-immortal.html'">发掘详情</button>
+                        </div>
+                        <div class="fossil-card mid-depth">
+                            <span class="status-badge status-spread">扩散期</span>
+                            <span class="archive-id">AI-2024-004</span>
+                            <h3>智能体</h3>
+                            <p>技术 | 深度: 30cm</p>
+                            <button class="btn" onclick="location.href='detail-agent.html'">发掘详情</button>
+                        </div>
+                        <div class="fossil-card mid-depth">
+                            <span class="status-badge status-spread">扩散期</span>
+                            <span class="archive-id">AI-2024-005</span>
+                            <h3>幻觉攻击</h3>
+                            <p>技术 | 深度: 33cm</p>
+                            <button class="btn" onclick="location.href='detail-hallucination.html'">发掘详情</button>
+                        </div>
+                        <div class="fossil-card mid-depth">
+                            <span class="status-badge status-spread">扩散期</span>
+                            <span class="archive-id">AI-2024-006</span>
+                            <h3>提示词工程</h3>
+                            <p>技术 | 深度: 36cm</p>
+                            <button class="btn" onclick="location.href='detail-prompt-eng.html'">发掘详情</button>
+                        </div>
+                        <div class="fossil-card mid-depth">
+                            <span class="status-badge status-spread">扩散期</span>
+                            <span class="archive-id">AI-2024-007</span>
+                            <h3>数据隐私</h3>
+                            <p>社会 | 深度: 38cm</p>
+                            <button class="btn" onclick="location.href='detail-data-privacy.html'">发掘详情</button>
+                        </div>
+                        <div class="fossil-card mid-depth">
+                            <span class="status-badge status-spread">扩散期</span>
+                            <span class="archive-id">AI-2024-008</span>
+                            <h3>AI导师</h3>
+                            <p>教育 | 深度: 40cm</p>
+                            <button class="btn" onclick="location.href='detail-ai-mentor.html'">发掘详情</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stratum-separator">
+                    <div class="rock-layer"></div>
+                    <span class="excavation-line">— 考古发掘线 —</span>
+                    <div class="rock-layer"></div>
+                </div>
+
+                <div class="stratum stratum-2023">
+                    <div class="stratum-label">
+                        <span class="era-badge">2023</span>
+                        <span class="era-title">深层·古生代</span>
+                        <span class="depth-indicator">深度: 40-70cm</span>
+                    </div>
+                    <div class="fossil-cards">
+                        <div class="fossil-card deep">
+                            <span class="status-badge status-peak">鼎盛期</span>
+                            <span class="archive-id">AI-2023-001</span>
+                            <h3>AI打工人</h3>
+                            <p>职场 | 深度: 45cm</p>
+                            <button class="btn" onclick="location.href='detail-ai-worker.html'">发掘详情</button>
+                        </div>
+                        <div class="fossil-card deep">
+                            <span class="status-badge status-dormant">休眠期</span>
+                            <span class="archive-id">AI-2023-002</span>
+                            <h3>AI摆烂</h3>
+                            <p>情绪 | 深度: 48cm</p>
+                            <button class="btn" onclick="location.href='detail-ai-lazy.html'">发掘详情</button>
+                        </div>
+                        <div class="fossil-card deep">
+                            <span class="status-badge status-dormant">休眠期</span>
+                            <span class="archive-id">AI-2023-003</span>
+                            <h3>AI炼丹</h3>
+                            <p>技术 | 深度: 52cm</p>
+                            <button class="btn" onclick="location.href='detail-ai-alchemy.html'">发掘详情</button>
+                        </div>
+                        <div class="fossil-card deep">
+                            <span class="status-badge status-peak">鼎盛期</span>
+                            <span class="archive-id">AI-2023-004</span>
+                            <h3>AI作画</h3>
+                            <p>技术 | 深度: 55cm</p>
+                            <button class="btn" onclick="location.href='detail-ai-art.html'">发掘详情</button>
+                        </div>
+                        <div class="fossil-card deep">
+                            <span class="status-badge status-dormant">休眠期</span>
+                            <span class="archive-id">AI-2023-005</span>
+                            <h3>深度伪造</h3>
+                            <p>技术 | 深度: 58cm</p>
+                            <button class="btn" onclick="location.href='detail-deepfake.html'">发掘详情</button>
+                        </div>
+                        <div class="fossil-card deep">
+                            <span class="status-badge status-peak">鼎盛期</span>
+                            <span class="archive-id">AI-2023-006</span>
+                            <h3>算法推荐</h3>
+                            <p>技术 | 深度: 62cm</p>
+                            <button class="btn" onclick="location.href='detail-algo-rec.html'">发掘详情</button>
+                        </div>
+                        <div class="fossil-card deep">
+                            <span class="status-badge status-dormant">休眠期</span>
+                            <span class="archive-id">AI-2023-007</span>
+                            <h3>边缘计算</h3>
+                            <p>技术 | 深度: 68cm</p>
+                            <button class="btn" onclick="location.href='detail-edge.html'">发掘详情</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="excavation-progress">
+                <div class="progress-indicator">
+                    <span class="progress-label">考古进度</span>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="excavationProgress"></div>
+                    </div>
+                    <span class="progress-depth" id="currentDepth">0cm</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>数字人文导论期末项目 | 2025 开源存档</footer>
+
+    <script>
+        // 流行语数据
+        const trendingData = [
+            { id: 'AI-2025-001', name: 'AI洗脑', type: '情绪', year: '2025', depth: '5cm', status: '新生期', statusClass: 'status-new', url: 'detail-ai-brainwash.html' },
+            { id: 'AI-2025-002', name: 'AI女友', type: '社交', year: '2025', depth: '8cm', status: '新生期', statusClass: 'status-new', url: 'detail-ai-girlfriend.html' },
+            { id: 'AI-2025-003', name: '生成式AI', type: '技术', year: '2025', depth: '12cm', status: '鼎盛期', statusClass: 'status-peak', url: 'detail-generative.html' },
+            { id: 'AI-2024-001', name: 'Prompt工程师', type: '技术', year: '2024', depth: '18cm', status: '衰减期', statusClass: 'status-decline', url: 'detail-prompt.html' },
+            { id: 'AI-2024-002', name: '数字游民', type: '职场', year: '2024', depth: '22cm', status: '衰减期', statusClass: 'status-decline', url: 'detail-digital-nomad.html' },
+            { id: 'AI-2024-003', name: '数字永生', type: '哲学', year: '2024', depth: '26cm', status: '鼎盛期', statusClass: 'status-peak', url: 'detail-digital-immortal.html' },
+            { id: 'AI-2024-004', name: '智能体', type: '技术', year: '2024', depth: '30cm', status: '扩散期', statusClass: 'status-spread', url: 'detail-agent.html' },
+            { id: 'AI-2024-005', name: '幻觉攻击', type: '技术', year: '2024', depth: '33cm', status: '扩散期', statusClass: 'status-spread', url: 'detail-hallucination.html' },
+            { id: 'AI-2024-006', name: '提示词工程', type: '技术', year: '2024', depth: '36cm', status: '扩散期', statusClass: 'status-spread', url: 'detail-prompt-eng.html' },
+            { id: 'AI-2024-007', name: '数据隐私', type: '社会', year: '2024', depth: '38cm', status: '扩散期', statusClass: 'status-spread', url: 'detail-data-privacy.html' },
+            { id: 'AI-2024-008', name: 'AI导师', type: '教育', year: '2024', depth: '40cm', status: '扩散期', statusClass: 'status-spread', url: 'detail-ai-mentor.html' },
+            { id: 'AI-2023-001', name: 'AI打工人', type: '职场', year: '2023', depth: '45cm', status: '休眠期', statusClass: 'status-dormant', url: 'detail-ai-worker.html' },
+            { id: 'AI-2023-002', name: 'AI摆烂', type: '情绪', year: '2023', depth: '48cm', status: '休眠期', statusClass: 'status-dormant', url: 'detail-ai-lazy.html' },
+            { id: 'AI-2023-003', name: 'AI炼丹', type: '技术', year: '2023', depth: '52cm', status: '休眠期', statusClass: 'status-dormant', url: 'detail-ai-alchemy.html' },
+            { id: 'AI-2023-004', name: 'AI作画', type: '技术', year: '2023', depth: '55cm', status: '休眠期', statusClass: 'status-dormant', url: 'detail-ai-art.html' },
+            { id: 'AI-2023-005', name: '深度伪造', type: '技术', year: '2023', depth: '58cm', status: '休眠期', statusClass: 'status-dormant', url: 'detail-deepfake.html' },
+            { id: 'AI-2023-006', name: '算法推荐', type: '技术', year: '2023', depth: '62cm', status: '休眠期', statusClass: 'status-dormant', url: 'detail-algo-rec.html' },
+            { id: 'AI-2023-007', name: '边缘计算', type: '技术', year: '2023', depth: '68cm', status: '休眠期', statusClass: 'status-dormant', url: 'detail-edge.html' }
+        ];
+
+        // 筛选搜索功能
+        function filterAndSearch() {
+            const year = document.getElementById('yearFilter').value;
+            const type = document.getElementById('typeFilter').value;
+            const keyword = document.getElementById('keywordSearch').value.toLowerCase().trim();
+            
+            // 筛选数据
+            let filtered = trendingData;
+            
+            if (year !== 'all') {
+                filtered = filtered.filter(item => item.year === year);
+            }
+            
+            if (type !== 'all') {
+                filtered = filtered.filter(item => item.type === type);
+            }
+            
+            if (keyword) {
+                filtered = filtered.filter(item => 
+                    item.name.toLowerCase().includes(keyword) ||
+                    item.id.toLowerCase().includes(keyword)
+                );
+            }
+            
+            // 显示结果
+            const resultsContainer = document.getElementById('resultsContainer');
+            const searchResults = document.getElementById('searchResults');
+            
+            if (filtered.length > 0) {
+                resultsContainer.innerHTML = filtered.map(item => `
+                    <div class="fossil-card ${item.year === '2025' ? 'surface' : item.year === '2024' ? 'mid-depth' : 'deep'}">
+                        <span class="status-badge ${item.statusClass}">${item.status}</span>
+                        <span class="archive-id">${item.id}</span>
+                        <h3>${item.name}</h3>
+                        <p>${item.type} | 深度: ${item.depth}</p>
+                        <button class="btn" onclick="location.href='${item.url}'">发掘详情</button>
+                    </div>
+                `).join('');
+                searchResults.style.display = 'block';
+            } else {
+                resultsContainer.innerHTML = '<p style="text-align:center; color:#888;">未找到匹配的流行语</p>';
+                searchResults.style.display = 'block';
+            }
+        }
+
+        // 绑定事件
+        document.getElementById('searchBtn').addEventListener('click', filterAndSearch);
+        document.getElementById('yearFilter').addEventListener('change', filterAndSearch);
+        document.getElementById('typeFilter').addEventListener('change', filterAndSearch);
+        document.getElementById('keywordSearch').addEventListener('keyup', function(e) {
+            if (e.key === 'Enter') {
+                filterAndSearch();
+            }
+        });
+
+        window.addEventListener('scroll', function() {
+            const scrolled = window.scrollY;
+            const totalHeight = document.body.scrollHeight - window.innerHeight;
+            const progress = Math.min((scrolled / totalHeight) * 100, 100);
+            const depth = Math.floor((progress / 100) * 70);
+            
+            document.getElementById('excavationProgress').style.width = progress + '%';
+            document.getElementById('currentDepth').textContent = depth + 'cm';
+        });
+
+        // Cyberpunk Mouse Trail Effects
+        const cyberCursor = document.getElementById('cyberCursor');
+        const cyberTrailContainer = document.getElementById('cyberTrailContainer');
+        const colors = ['cyan', 'magenta', 'purple'];
+        const shapes = ['dot', 'line', 'pixel'];
+        let mouseX = 0;
+        let mouseY = 0;
+        let lastMouseX = 0;
+        let lastMouseY = 0;
+        let trailParticles = [];
+        const maxParticles = 15;
+        const particleLife = 1000;
+
+        function updateCursor(e) {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cyberCursor.style.left = mouseX - 10 + 'px';
+            cyberCursor.style.top = mouseY - 10 + 'px';
+        }
+
+        function createParticle() {
+            const dx = mouseX - lastMouseX;
+            const dy = mouseY - lastMouseY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < 5) return;
+
+            const particle = document.createElement('div');
+            particle.className = `cyber-particle ${colors[Math.floor(Math.random() * colors.length)]} ${shapes[Math.floor(Math.random() * shapes.length)]}`;
+            const size = Math.random() * 6 + 2;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = mouseX - size / 2 + 'px';
+            particle.style.top = mouseY - size / 2 + 'px';
+
+            if (particle.classList.contains('line')) {
+                const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+                particle.style.transform = `rotate(${angle}deg)`;
+                particle.style.width = (size * 2) + 'px';
+                particle.style.height = '2px';
+            }
+
+            cyberTrailContainer.appendChild(particle);
+            trailParticles.push({ element: particle, createdAt: Date.now() });
+
+            if (trailParticles.length > maxParticles) {
+                const oldest = trailParticles.shift();
+                oldest.element.remove();
+            }
+
+            animateParticle(particle);
+            lastMouseX = mouseX;
+            lastMouseY = mouseY;
+        }
+
+        function animateParticle(particle) {
+            let opacity = 1, scale = 1;
+            const startTime = Date.now();
+            function animate() {
+                const progress = Math.min((Date.now() - startTime) / particleLife, 1);
+                opacity = 1 - progress;
+                scale = 1 + progress * 0.5;
+                particle.style.opacity = opacity;
+                particle.style.transform = `scale(${scale})`;
+                if (progress < 1) requestAnimationFrame(animate);
+                else { particle.remove(); trailParticles = trailParticles.filter(p => p.element !== particle); }
+            }
+            animate();
+        }
+
+        function createDataStream() {
+            if (trailParticles.length < 2) return;
+            const recent = trailParticles.slice(-3);
+            for (let i = 0; i < recent.length - 1; i++) {
+                const p1 = recent[i], p2 = recent[i+1];
+                const stream = document.createElement('div');
+                stream.className = 'cyber-data-stream';
+                const x1 = parseFloat(p1.element.style.left) + 3, y1 = parseFloat(p1.element.style.top) + 3;
+                const x2 = parseFloat(p2.element.style.left) + 3, y2 = parseFloat(p2.element.style.top) + 3;
+                const length = Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2));
+                const angle = Math.atan2(y2-y1, x2-x1) * 180 / Math.PI;
+                stream.style.left = x1 + 'px';
+                stream.style.top = y1 + 'px';
+                stream.style.width = length + 'px';
+                stream.style.transform = `rotate(${angle}deg)`;
+                stream.style.transformOrigin = 'left center';
+                cyberTrailContainer.appendChild(stream);
+                setTimeout(() => stream.remove(), 500);
+            }
+        }
+
+        function trailLoop() {
+            createParticle();
+            if (Math.random() > 0.7) createDataStream();
+            requestAnimationFrame(trailLoop);
+        }
+
+        window.addEventListener('mousemove', updateCursor);
+        trailLoop();
+
+        const interactiveElements = document.querySelectorAll('button, a, .fossil-card');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cyberCursor.style.transform = 'scale(1.5)');
+            el.addEventListener('mouseleave', () => cyberCursor.style.transform = 'scale(1)');
+        });
+    </script>
+    <script src="cyber-cursor.js"></script>
+</body>
+</html>

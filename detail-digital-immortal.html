@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字永生 | AI档案馆</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .chart-box,
+        .semantic-drift-chart {
+            width: 100%;
+            height: 360px;
+            margin: 1rem 0;
+        }
+        .cooccurrence-chart {
+            width: 100%;
+            height: 450px;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="grid-overlay"></div>
+    <div class="code-rain"></div>
+
+    <!-- Cyberpunk Mouse Effects -->
+    <div class="cyber-trail-container" id="cyberTrailContainer"></div>
+    <div class="silver-cursor" id="silverCursor"></div>
+
+    <div class="nav">
+        <div class="logo">AI流行语生命周期档案馆</div>
+        <div class="nav-link">
+            <a href="index.html">主控舱</a>
+            <a href="list.html">语料索引库</a>
+            <a href="neural-grid.html">神经语言网格</a>
+            <a href="data.html">开源数据节点</a>
+            <a href="about.html">系统协议</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card info-card">
+            <span class="status-badge status-peak">鼎盛期</span>
+            <span class="archive-id">AI-2024-003</span>
+            <h1>数字永生</h1>
+            <p><strong>首次出现：</strong>2024.03（科幻论坛/哲学讨论）</p>
+            <p><strong>原始含义：</strong>通过AI技术将个人意识、记忆数字化保存，实现某种形式的"永生"</p>
+            <p><strong>核心人群：</strong>科技爱好者、哲学家、未来学家</p>
+            <p><strong>热度指数：</strong>7.5/10</p>
+        </div>
+
+        <div class="card">
+            <h2>一、起源语境溯源</h2>
+            <p>2024年3月，OpenAI推出ChatGPT记忆功能后，"数字永生"成为热门话题。人们开始讨论如何将个人数据转化为数字化身。</p>
+            <p style="color:var(--neon-purple);">时间线：2024.03 技术突破 → 2024.05 伦理讨论 → 2024.07 商业尝试</p>
+        </div>
+
+        <div class="card">
+            <h2>二、传播路径：平台热度</h2>
+            <div id="barChart" class="chart-box"></div>
+            <p>数据说明：知乎为核心传播阵地，哲学讨论贡献52%传播量。</p>
+        </div>
+
+        <div class="card">
+            <h2>三、语义演化</h2>
+            <div class="lifecycle-container">
+                <div class="lifecycle-timeline">
+                    <div class="lifecycle-line"></div>
+                    
+                    <div class="lifecycle-stage">
+                        <div class="stage-icon stage-burst">🔥</div>
+                        <div class="stage-label">爆发期</div>
+                        <div class="stage-desc">2024.03-2024.05</div>
+                    </div>
+                    
+                    <div class="lifecycle-stage">
+                        <div class="stage-icon stage-wide">🌐</div>
+                        <div class="stage-label">广泛使用期</div>
+                        <div class="stage-desc">2024.06-2024.12</div>
+                    </div>
+                    
+                    <div class="lifecycle-stage">
+                        <div class="stage-icon stage-tease">😜</div>
+                        <div class="stage-label">调侃期</div>
+                        <div class="stage-desc">2025.01-至今</div>
+                    </div>
+                    
+                    <div class="lifecycle-stage">
+                        <div class="stage-icon stage-forget">💤</div>
+                        <div class="stage-label">遗忘期</div>
+                        <div class="stage-desc">尚未进入</div>
+                    </div>
+                </div>
+                
+                <div class="lifecycle-wave">
+                    <div class="wave-container">
+                        <svg width="100%" height="60" viewBox="0 0 400 60" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#715799;stop-opacity:0.3" />
+                                    <stop offset="50%" style="stop-color:#C9A962;stop-opacity:0.5" />
+                                    <stop offset="100%" style="stop-color:#715799;stop-opacity:0.3" />
+                                </linearGradient>
+                            </defs>
+                            <path class="wave" d="M0,30 Q50,10 100,30 T200,30 T300,30 T400,30" />
+                            <path class="wave" d="M0,40 Q50,20 100,40 T200,40 T300,40 T400,40" />
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="lifecycle-current">当前阶段：调侃期</div>
+                
+                <div class="lifecycle-metrics">
+                    <div class="metric-item">
+                        <div class="metric-value">14个月</div>
+                        <div class="metric-label">生命周期</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">7.5</div>
+                        <div class="metric-label">峰值热度</div>
+                    </div>
+                    <div class="metric-item">
+                        <div class="metric-value">4.2</div>
+                        <div class="metric-label">当前热度</div>
+                    </div>
+                </div>
+            </div>
+            <p><strong>演化路径：</strong>科幻（概念想象）→ 技术（可行性探讨）→ 伦理（生死意义）</p>
+            
+            <div class="semantic-drift-container">
+                <h4 style="text-align:center;margin-bottom:0.5rem;color:#A78BFA;">词义漂移轨迹</h4>
+                <div id="semanticDriftChart" class="semantic-drift-chart"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>四、社会心理分析</h2>
+            <div id="radarChart" class="chart-box"></div>
+            <p>核心情绪：恐惧(6.8)、好奇(8.2)，反映人类面对技术突破时对生死问题的深刻思考。</p>
+        </div>
+
+        <div class="card">
+            <h2>五、共现词网络</h2>
+            <div id="cooccurrenceChart" class="cooccurrence-chart"></div>
+            <p>展示与"数字永生"高频共现的Top 10流行语，节点大小反映共现强度，点击节点可查看详情。</p>
+        </div>
+    </div>
+
+    <footer>数字人文导论期末项目 | 2025 开源存档</footer>
+
+    <script>
+        const barChart = echarts.init(document.getElementById('barChart'));
+        barChart.setOption({
+            backgroundColor: 'transparent',
+            xAxis: { type: 'category', data: ['小红书', '微博', 'B站', '知乎', '抖音'], axisLine: { lineStyle: { color: '#4A4A4A' } }, axisLabel: { color: '#4A4A4A' } },
+            yAxis: { type: 'value', axisLine: { lineStyle: { color: '#4A4A4A' } }, axisLabel: { color: '#4A4A4A' }, splitLine: { lineStyle: { color: 'rgba(44,44,44,0.1)' } } },
+            series: [{ type: 'bar', data: [18.5, 15.2, 14.8, 12.5, 9.7], color: ['#715799', '#8B6BA8', '#715799', '#8B6BA8', '#715799'], barBorderRadius: [4, 4, 0, 0] }]
+        });
+
+        const radarChart = echarts.init(document.getElementById('radarChart'));
+        radarChart.setOption({
+            backgroundColor: 'transparent',
+            title: {
+                text: '社会心理指标分析',
+                left: 'center',
+                top: 10,
+                textStyle: { color: '#4A4A4A', fontSize: 14, fontWeight: 'bold' }
+            },
+            radar: {
+                indicator: [{ name: '期待', max: 10 }, { name: '好奇', max: 10 }, { name: '恐惧', max: 10 }, { name: '疑虑', max: 10 }, { name: '向往', max: 10 }],
+                shape: 'polygon',
+                radius: '65%',
+                splitNumber: 5,
+                axisName: { color: '#4A4A4A', fontSize: 12 },
+                splitLine: { lineStyle: { color: 'rgba(113,87,153,0.2)' } },
+                splitArea: { areaStyle: { color: ['rgba(113,87,153,0.08)', 'rgba(201,169,98,0.08)', 'rgba(113,87,153,0.05)', 'rgba(201,169,98,0.05)', 'rgba(113,87,153,0.03)'] } },
+                axisLine: { lineStyle: { color: 'rgba(113,87,153,0.3)' } }
+            },
+            series: [{
+                type: 'radar',
+                symbol: 'circle',
+                symbolSize: 6,
+                lineStyle: { color: '#715799', width: 2 },
+                areaStyle: { color: 'rgba(113,87,153,0.3)', opacity: 0.6 },
+                itemStyle: { color: '#715799', borderColor: '#fff', borderWidth: 2 },
+                data: [{ value: [8.2, 8.5, 5.2, 5.5, 7.8], name: '数字永生' }]
+            }]
+        });
+
+        const driftChart = echarts.init(document.getElementById('semanticDriftChart'));
+        driftChart.setOption({
+            backgroundColor: 'transparent',
+            grid: { left: '3%', right: '3%', top: '10%', bottom: '3%' },
+            xAxis: { show: false },
+            yAxis: { show: false },
+            series: [{
+                type: 'line', smooth: 0.4, symbol: 'circle', symbolSize: 16,
+                lineStyle: { color: '#8B5CF6', width: 3, shadowBlur: 10, shadowColor: 'rgba(139,92,246,0.5)' },
+                itemStyle: {
+                    color: function(params) {
+                        const colors = ['#8B5CF6', '#06B6D4', '#10B981', '#F59E0B', '#EF4444'];
+                        return colors[params.dataIndex];
+                    },
+                    borderColor: '#fff',
+                    borderWidth: 2,
+                    shadowBlur: 15,
+                    shadowColor: 'rgba(139,92,246,0.6)'
+                },
+                label: {
+                    show: true,
+                    position: 'top',
+                    formatter: function(params) {
+                        return '语义' + (params.dataIndex + 1);
+                    },
+                    color: '#666',
+                    fontSize: 12,
+                    fontWeight: 'bold'
+                },
+                data: [[1, 1.8], [3, 3.5], [5.5, 5.2], [7.5, 7.2], [9.5, 8.8]]
+            }]
+        });
+
+        const cooccurrenceChart = echarts.init(document.getElementById('cooccurrenceChart'));
+        cooccurrenceChart.setOption({
+            backgroundColor: 'transparent',
+            tooltip: {
+                trigger: 'item',
+                formatter: function(params) {
+                    if (params.dataType === 'node') {
+                        return `<div style="padding:8px;">
+                            <strong>${params.name}</strong><br/>
+                            共现强度: ${params.data.value}
+                        </div>`;
+                    }
+                }
+            },
+            series: [{
+                type: 'graph',
+                layout: 'force',
+                animation: true,
+                animationDuration: 1500,
+                animationEasingUpdate: 'quinticInOut',
+                roam: true,
+                draggable: true,
+                data: [
+                    { name: '数字永生', value: 100, symbolSize: 50, itemStyle: { color: '#8B5CF6', shadowBlur: 20, shadowColor: 'rgba(139,92,246,0.8)' } },
+                    { name: '生成式AI', value: 85, symbolSize: 38, itemStyle: { color: '#06B6D4', shadowBlur: 15, shadowColor: 'rgba(6,182,212,0.6)' } },
+                    { name: '数字人', value: 78, symbolSize: 35, itemStyle: { color: '#10B981', shadowBlur: 15, shadowColor: 'rgba(16,185,129,0.6)' } },
+                    { name: 'AI女友', value: 72, symbolSize: 32, itemStyle: { color: '#F59E0B', shadowBlur: 15, shadowColor: 'rgba(245,158,11,0.6)' } },
+                    { name: '意识上传', value: 68, symbolSize: 30, itemStyle: { color: '#EF4444', shadowBlur: 15, shadowColor: 'rgba(239,68,68,0.6)' } },
+                    { name: '元宇宙', value: 65, symbolSize: 28, itemStyle: { color: '#EC4899', shadowBlur: 15, shadowColor: 'rgba(236,72,153,0.6)' } },
+                    { name: '数字孪生', value: 62, symbolSize: 26, itemStyle: { color: '#84CC16', shadowBlur: 15, shadowColor: 'rgba(132,204,22,0.6)' } },
+                    { name: '脑机接口', value: 58, symbolSize: 24, itemStyle: { color: '#6366F1', shadowBlur: 15, shadowColor: 'rgba(99,102,241,0.6)' } },
+                    { name: '赛博空间', value: 55, symbolSize: 22, itemStyle: { color: '#F97316', shadowBlur: 15, shadowColor: 'rgba(249,115,22,0.6)' } },
+                    { name: '数字遗产', value: 52, symbolSize: 20, itemStyle: { color: '#0EA5E9', shadowBlur: 15, shadowColor: 'rgba(14,165,233,0.6)' } },
+                    { name: '虚拟永生', value: 48, symbolSize: 18, itemStyle: { color: '#D946EF', shadowBlur: 15, shadowColor: 'rgba(217,70,239,0.6)' } }
+                ],
+                links: [
+                    { source: '数字永生', target: '生成式AI', lineStyle: { color: '#8B5CF6', width: 3, shadowBlur: 10, shadowColor: 'rgba(139,92,246,0.8)' } },
+                    { source: '数字永生', target: '数字人', lineStyle: { color: '#8B5CF6', width: 2.5, shadowBlur: 8, shadowColor: 'rgba(139,92,246,0.6)' } },
+                    { source: '数字永生', target: 'AI女友', lineStyle: { color: '#8B5CF6', width: 2.5, shadowBlur: 8, shadowColor: 'rgba(139,92,246,0.6)' } },
+                    { source: '数字永生', target: '意识上传', lineStyle: { color: '#8B5CF6', width: 2.5, shadowBlur: 8, shadowColor: 'rgba(139,92,246,0.6)' } },
+                    { source: '数字永生', target: '元宇宙', lineStyle: { color: '#8B5CF6', width: 2, shadowBlur: 6, shadowColor: 'rgba(139,92,246,0.5)' } },
+                    { source: '数字永生', target: '数字孪生', lineStyle: { color: '#8B5CF6', width: 2, shadowBlur: 6, shadowColor: 'rgba(139,92,246,0.5)' } },
+                    { source: '数字永生', target: '脑机接口', lineStyle: { color: '#8B5CF6', width: 2, shadowBlur: 6, shadowColor: 'rgba(139,92,246,0.5)' } },
+                    { source: '数字永生', target: '赛博空间', lineStyle: { color: '#8B5CF6', width: 1.5, shadowBlur: 5, shadowColor: 'rgba(139,92,246,0.4)' } },
+                    { source: '数字永生', target: '数字遗产', lineStyle: { color: '#8B5CF6', width: 1.5, shadowBlur: 5, shadowColor: 'rgba(139,92,246,0.4)' } },
+                    { source: '数字永生', target: '虚拟永生', lineStyle: { color: '#8B5CF6', width: 1.5, shadowBlur: 5, shadowColor: 'rgba(139,92,246,0.4)' } },
+                    { source: '生成式AI', target: '数字人', lineStyle: { color: '#06B6D4', width: 1.5, shadowBlur: 5, shadowColor: 'rgba(6,182,212,0.4)' } },
+                    { source: '生成式AI', target: '数字孪生', lineStyle: { color: '#06B6D4', width: 1.5, shadowBlur: 5, shadowColor: 'rgba(6,182,212,0.4)' } },
+                    { source: '元宇宙', target: '赛博空间', lineStyle: { color: '#EC4899', width: 1, shadowBlur: 4, shadowColor: 'rgba(236,72,153,0.3)' } },
+                    { source: '意识上传', target: '脑机接口', lineStyle: { color: '#EF4444', width: 1, shadowBlur: 4, shadowColor: 'rgba(239,68,68,0.3)' } }
+                ],
+                force: {
+                    repulsion: 250,
+                    gravity: 0.2,
+                    edgeLength: [80, 150],
+                    layoutAnimation: true,
+                    friction: 0.6,
+                    nodeSize: 20
+                },
+                label: {
+                    show: true,
+                    position: 'bottom',
+                    color: '#666',
+                    fontSize: 11,
+                    fontWeight: 'bold',
+                    distance: 5
+                },
+                emphasis: {
+                    focus: 'adjacency',
+                    lineStyle: {
+                        width: 4,
+                        shadowBlur: 20,
+                        shadowColor: 'rgba(139,92,246,0.8)'
+                    },
+                    itemStyle: {
+                        shadowBlur: 30,
+                        shadowColor: 'rgba(139,92,246,0.9)'
+                    }
+                }
+            }]
+        });
+
+        cooccurrenceChart.on('click', function(params) {
+            if (params.dataType === 'node') {
+                const urlMap = {
+                    '生成式AI': 'detail-generative.html',
+                    '数字人': 'detail-digital-nomad.html',
+                    'AI女友': 'detail-ai-girlfriend.html',
+                    '数字永生': 'detail-digital-immortal.html'
+                };
+                if (urlMap[params.name]) {
+                    location.href = urlMap[params.name];
+                }
+            }
+        });
+
+        window.addEventListener('resize', () => {
+            barChart.resize();
+            radarChart.resize();
+            driftChart.resize();
+            cooccurrenceChart.resize();
+        });
+    </script>
+    <script src="cyber-cursor.js"></script>
+</body>
+</html>
