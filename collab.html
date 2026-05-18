@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>共生编译所 | AI档案馆</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .collab-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .collab-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(113, 87, 153, 0.1), rgba(201, 169, 98, 0.1));
+            border-radius: 12px;
+            border: 1px solid rgba(113, 87, 153, 0.3);
+        }
+        
+        .collab-header h1 {
+            font-size: 2.5rem;
+            color: #C9A962;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(201, 169, 98, 0.5);
+        }
+        
+        .collab-header p {
+            color: #A78BFA;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .collab-section {
+            background: rgba(30, 30, 35, 0.8);
+            border-radius: 12px;
+            border: 1px solid rgba(113, 87, 153, 0.3);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .collab-section h2 {
+            color: #8B5CF6;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .collab-section h2::before {
+            content: '//';
+            color: #F59E0B;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #A78BFA;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(20, 20, 25, 0.8);
+            border: 1px solid rgba(113, 87, 153, 0.5);
+            border-radius: 8px;
+            color: #fff;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            resize: vertical;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8B5CF6;
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #8B5CF6, #715799);
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(139, 92, 246, 0.4);
+        }
+        
+        .community-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .community-card {
+            background: rgba(20, 20, 25, 0.6);
+            border: 1px solid rgba(113, 87, 153, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: border-color 0.3s, transform 0.3s;
+        }
+        
+        .community-card:hover {
+            border-color: #8B5CF6;
+            transform: translateY(-5px);
+        }
+        
+        .community-card .author {
+            color: #F59E0B;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .community-card .date {
+            color: #666;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+        
+        .community-card .content {
+            color: #ccc;
+            line-height: 1.6;
+        }
+        
+        .community-card .tags {
+            margin-top: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .community-card .tag {
+            background: rgba(139, 92, 246, 0.2);
+            color: #A78BFA;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: rgba(20, 20, 25, 0.6);
+            border: 1px solid rgba(113, 87, 153, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        
+        .stat-card .stat-value {
+            font-size: 2.5rem;
+            color: #8B5CF6;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-card .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .rules-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .rules-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(113, 87, 153, 0.2);
+            color: #ccc;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+        
+        .rules-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .rules-list li::before {
+            content: '>';
+            color: #8B5CF6;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="noise-overlay"></div>
+    <div class="grid-overlay"></div>
+    <div class="code-rain"></div>
+
+    <div class="cyber-trail-container" id="cyberTrailContainer"></div>
+    <div class="silver-cursor" id="silverCursor"></div>
+
+    <div class="nav">
+        <div class="logo">AI流行语生命周期档案馆</div>
+        <div class="nav-link">
+            <a href="index.html">主控舱</a>
+            <a href="list.html">语料索引库</a>
+            <a href="neural-grid.html">神经语言网格</a>
+            <a href="data.html">开源数据节点</a>
+            <a href="collab.html">共生编译所</a>
+            <a href="about.html">系统协议</a>
+        </div>
+    </div>
+
+    <div class="collab-container">
+        <div class="collab-header">
+            <h1>共生编译所</h1>
+            <p>在这里，每一个声音都将被记录、分析，并融入AI流行语的演化图谱。</p>
+            <p>你的贡献，将成为数字文化的一部分。</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value">1,234</div>
+                <div class="stat-label">社区贡献者</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">5,678</div>
+                <div class="stat-label">语料提交</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">890</div>
+                <div class="stat-label">新发现流行语</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">98%</div>
+                <div class="stat-label">审核通过率</div>
+            </div>
+        </div>
+
+        <div class="collab-section">
+            <h2>提交新语料</h2>
+            <form id="submitForm">
+                <div class="form-group">
+                    <label for="contributorName">您的代号</label>
+                    <input type="text" id="contributorName" placeholder="输入您的匿名代号（如：CyberPunk_2077）">
+                </div>
+                <div class="form-group">
+                    <label for="newPhrase">流行语/新词</label>
+                    <input type="text" id="newPhrase" placeholder="输入您发现的新流行语">
+                </div>
+                <div class="form-group">
+                    <label for="phraseContext">语境描述</label>
+                    <textarea id="phraseContext" placeholder="描述您在哪里看到这个词，以及它的使用场景..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="phraseExample">使用示例</label>
+                    <textarea id="phraseExample" placeholder="提供一个或多个使用该词的句子..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">提交编译</button>
+            </form>
+        </div>
+
+        <div class="collab-section">
+            <h2>最新贡献</h2>
+            <div class="community-list">
+                <div class="community-card">
+                    <div class="author">@NeuralDreamer</div>
+                    <div class="date">2024-06-15</div>
+                    <div class="content">"AI搭子" - 指利用AI工具作为日常协作伙伴，比如用AI帮写代码、做设计、整理思路等。</div>
+                    <div class="tags">
+                        <span class="tag">新词发现</span>
+                        <span class="tag">AI协作</span>
+                    </div>
+                </div>
+                <div class="community-card">
+                    <div class="author">@DataStream</div>
+                    <div class="date">2024-06-14</div>
+                    <div class="content">补充"数字永生"的新用法：现在很多人用这个词调侃把聊天记录导出保存的行为。</div>
+                    <div class="tags">
+                        <span class="tag">语义补充</span>
+                        <span class="tag">数字永生</span>
+                    </div>
+                </div>
+                <div class="community-card">
+                    <div class="author">@CodeMonkey</div>
+                    <div class="date">2024-06-13</div>
+                    <div class="content">"Prompt工程学"已经成为不少大厂的正式岗位名称了，这标志着AI应用进入专业化阶段。</div>
+                    <div class="tags">
+                        <span class="tag">职业术语</span>
+                        <span class="tag">Prompt</span>
+                    </div>
+                </div>
+                <div class="community-card">
+                    <div class="author">@CyberNinja</div>
+                    <div class="date">2024-06-12</div>
+                    <div class="content">发现"AI幻觉"在游戏圈的新含义：指玩家过度依赖AI攻略而丧失游戏乐趣的现象。</div>
+                    <div class="tags">
+                        <span class="tag">语义演化</span>
+                        <span class="tag">AI幻觉</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="collab-section">
+            <h2>社区规则</h2>
+            <ul class="rules-list">
+                <li>请确保提交的内容真实、准确，基于您的真实观察</li>
+                <li>鼓励分享您在不同平台（微博、小红书、B站等）发现的流行语</li>
+                <li>提交的内容将经过审核后才会展示在公共区域</li>
+                <li>请尊重他人的贡献，保持社区友好氛围</li>
+                <li>严禁提交恶意、歧视性或违法内容</li>
+                <li>所有贡献将被归档保存，成为数字文化研究的一部分</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>数字人文导论期末项目 | 2025 开源存档</footer>
+
+    <script>
+        document.getElementById('submitForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('感谢您的贡献！您的提交已进入审核队列，通过后将展示在社区中。');
+            this.reset();
+        });
+    </script>
+    <script src="cyber-cursor.js"></script>
+</body>
+</html>
