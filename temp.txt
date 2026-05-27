@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>神经语言网格 | AI档案馆</title>
+    <title>神经语言网格 | AI档案�?/title>
     <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -19,10 +19,10 @@
     <div class="nav">
         <div class="logo">AI流行语生命周期档案馆</div>
         <div class="nav-link">
-            <a href="index.html">主控舱</a>
-            <a href="list.html">语料索引库</a>
+            <a href="index.html">主控�?/a>
+            <a href="list.html">语料索引�?/a>
             <a href="neural-grid.html" class="active">神经语言网格</a>
-            <a href="data.html">开源数据节点</a>
+            <a href="data.html">开源数据节�?/a>
             <a href="collab.html">共生编译所</a>
             <a href="about.html">系统协议</a>
         </div>
@@ -31,13 +31,13 @@
     <div class="container">
         <div class="banner">
             <h1>神经语言网格</h1>
-            <p>探索AI时代流行语的深层语义网络与演化图谱</p>
+            <p>探索AI时代流行语的深层语义网络与演化图�?/p>
         </div>
 
         <!-- Timeline Deposition Layer -->
         <div class="card card-damaged">
             <h2>一、时序沉积层</h2>
-            <p class="section-desc">AI时代流行语时间线 · 横向可拖拽时间轴 + 热度气泡图</p>
+            <p class="section-desc">AI时代流行语时间线 · 横向可拖拽时间轴 + 热度气泡�?/p>
             <div class="timeline-container" id="timelineContainer">
                 <div class="timeline-slider" id="timelineSlider">
                     <div class="timeline-track" id="timelineTrack"></div>
@@ -51,13 +51,13 @@
         <!-- Semantic Co-occurrence Network -->
         <div class="card card-damaged">
             <h2>二、语义共生云</h2>
-            <p class="section-desc">共现词网络 · 力导向图展示流行语之间的语义关联</p>
+            <p class="section-desc">共现词网�?· 力导向图展示流行语之间的语义关联</p>
             <div class="network-chart" id="networkChart"></div>
         </div>
 
         <!-- AI Lexical Family Tree -->
         <div class="card card-damaged">
-            <h2>三、硅基语族谱</h2>
+            <h2>三、硅基语族谱�?/h2>
             <p class="section-desc">AI相关流行语关系图 · 辐射状层级图展示词汇衍生关系</p>
             <div class="tree-chart" id="treeChart"></div>
         </div>
@@ -73,48 +73,42 @@
         let selectedYear = null;
 
         const timelineData = [
-            // 2019年
-            { name: '深度学习', value: [2019, 3, 72, '技术概念'], symbolSize: 42 },
-            { name: '神经网络', value: [2019, 6, 68, '技术概念'], symbolSize: 40 },
-            { name: 'AI芯片', value: [2019, 9, 75, '硬件技术'], symbolSize: 44 },
+            // 2019�?            { name: '深度学习', value: [2019, 3, 72, '技术概�?], symbolSize: 42 },
+            { name: '神经网络', value: [2019, 6, 68, '技术概�?], symbolSize: 40 },
+            { name: 'AI芯片', value: [2019, 9, 75, '硬件技�?], symbolSize: 44 },
             { name: '自动驾驶', value: [2019, 12, 80, '应用场景'], symbolSize: 47 },
             
-            // 2020年
-            { name: 'GPT-3', value: [2020, 5, 95, '核心模型'], symbolSize: 58 },
-            { name: '计算机视觉', value: [2020, 3, 70, '技术领域'], symbolSize: 41 },
-            { name: '自然语言处理', value: [2020, 7, 78, '技术领域'], symbolSize: 45 },
-            { name: '数据科学', value: [2020, 10, 65, '技术概念'], symbolSize: 38 },
+            // 2020�?            { name: 'GPT-3', value: [2020, 5, 95, '核心模型'], symbolSize: 58 },
+            { name: '计算机视�?, value: [2020, 3, 70, '技术领�?], symbolSize: 41 },
+            { name: '自然语言处理', value: [2020, 7, 78, '技术领�?], symbolSize: 45 },
+            { name: '数据科学', value: [2020, 10, 65, '技术概�?], symbolSize: 38 },
             
-            // 2021年
-            { name: '元宇宙', value: [2021, 3, 88, '概念讨论'], symbolSize: 52 },
-            { name: '数字孪生', value: [2021, 6, 68, '技术概念'], symbolSize: 40 },
+            // 2021�?            { name: '元宇�?, value: [2021, 3, 88, '概念讨论'], symbolSize: 52 },
+            { name: '数字孪生', value: [2021, 6, 68, '技术概�?], symbolSize: 40 },
             { name: 'AI绘画', value: [2021, 9, 55, '艺术创作'], symbolSize: 33 },
-            { name: '量子计算', value: [2021, 12, 72, '前沿技术'], symbolSize: 42 },
+            { name: '量子计算', value: [2021, 12, 72, '前沿技�?], symbolSize: 42 },
             
-            // 2022年
-            { name: 'ChatGPT', value: [2022, 11, 99, '核心模型'], symbolSize: 65 },
+            // 2022�?            { name: 'ChatGPT', value: [2022, 11, 99, '核心模型'], symbolSize: 65 },
             { name: 'AI作画', value: [2022, 4, 62, '艺术创作'], symbolSize: 36 },
             { name: 'AI写作', value: [2022, 7, 58, '内容创作'], symbolSize: 34 },
-            { name: '多模态', value: [2022, 10, 75, '技术概念'], symbolSize: 44 },
+            { name: '多模�?, value: [2022, 10, 75, '技术概�?], symbolSize: 44 },
             
-            // 2023年
-            { name: 'AI作画', value: [2023, 1, 65, '艺术创作'], symbolSize: 38 },
-            { name: 'AI写代码', value: [2023, 2, 72, '技术开发'], symbolSize: 42 },
+            // 2023�?            { name: 'AI作画', value: [2023, 1, 65, '艺术创作'], symbolSize: 38 },
+            { name: 'AI写代�?, value: [2023, 2, 72, '技术开�?], symbolSize: 42 },
             { name: 'AI炼丹', value: [2023, 3, 68, '模型训练'], symbolSize: 40 },
             { name: 'AI聊天', value: [2023, 4, 88, '日常对话'], symbolSize: 52 },
-            { name: 'AI打工人', value: [2023, 5, 78, '职场文化'], symbolSize: 45 },
+            { name: 'AI打工�?, value: [2023, 5, 78, '职场文化'], symbolSize: 45 },
             { name: 'AI绘画', value: [2023, 6, 92, '艺术创作'], symbolSize: 55 },
-            { name: 'AI写论文', value: [2023, 7, 85, '学术研究'], symbolSize: 48 },
+            { name: 'AI写论�?, value: [2023, 7, 85, '学术研究'], symbolSize: 48 },
             { name: 'AI翻译', value: [2023, 8, 75, '语言服务'], symbolSize: 44 },
-            { name: 'AI配音', value: [2023, 9, 62, '多媒体'], symbolSize: 36 },
+            { name: 'AI配音', value: [2023, 9, 62, '多媒�?], symbolSize: 36 },
             { name: 'AI编曲', value: [2023, 10, 58, '音乐创作'], symbolSize: 34 },
-            { name: '深度伪造', value: [2023, 11, 70, '安全伦理'], symbolSize: 41 },
+            { name: '深度伪�?, value: [2023, 11, 70, '安全伦理'], symbolSize: 41 },
             { name: 'AI生成', value: [2023, 12, 82, '内容创作'], symbolSize: 47 },
             
-            // 2024年
-            { name: 'Prompt工程师', value: [2024, 1, 95, '技术岗位'], symbolSize: 58 },
-            { name: '提示词工程', value: [2024, 2, 88, '技术方法'], symbolSize: 51 },
-            { name: '智能体', value: [2024, 3, 80, 'AI应用'], symbolSize: 46 },
+            // 2024�?            { name: 'Prompt工程�?, value: [2024, 1, 95, '技术岗�?], symbolSize: 58 },
+            { name: '提示词工�?, value: [2024, 2, 88, '技术方�?], symbolSize: 51 },
+            { name: '智能�?, value: [2024, 3, 80, 'AI应用'], symbolSize: 46 },
             { name: '数字永生', value: [2024, 4, 68, '概念讨论'], symbolSize: 40 },
             { name: 'AI女友', value: [2024, 5, 76, '社交应用'], symbolSize: 44 },
             { name: 'AI导师', value: [2024, 6, 72, '教育应用'], symbolSize: 42 },
@@ -122,36 +116,34 @@
             { name: '数字游民', value: [2024, 8, 58, '生活方式'], symbolSize: 34 },
             { name: '幻觉攻击', value: [2024, 9, 55, '安全威胁'], symbolSize: 32 },
             { name: '数据隐私', value: [2024, 10, 78, '隐私保护'], symbolSize: 45 },
-            { name: '模型幻觉', value: [2024, 11, 68, '技术问题'], symbolSize: 40 },
-            { name: 'RAG技术', value: [2024, 12, 75, '检索增强'], symbolSize: 43 },
+            { name: '模型幻觉', value: [2024, 11, 68, '技术问�?], symbolSize: 40 },
+            { name: 'RAG技�?, value: [2024, 12, 75, '检索增�?], symbolSize: 43 },
             
-            // 2025年
-            { name: 'AI洗脑', value: [2025, 1, 85, '文化影响'], symbolSize: 49 },
-            { name: '生成式AI', value: [2025, 2, 98, '核心技术'], symbolSize: 62 },
+            // 2025�?            { name: 'AI洗脑', value: [2025, 1, 85, '文化影响'], symbolSize: 49 },
+            { name: '生成式AI', value: [2025, 2, 98, '核心技�?], symbolSize: 62 },
             { name: 'AI接管', value: [2025, 3, 72, '科幻讨论'], symbolSize: 42 },
             { name: 'AI创作', value: [2025, 4, 88, '内容生产'], symbolSize: 51 },
             { name: 'AGI', value: [2025, 5, 70, '人工智能'], symbolSize: 41 },
             { name: 'AI助手', value: [2025, 6, 92, '智能服务'], symbolSize: 54 },
             { name: 'AI伦理', value: [2025, 7, 65, '伦理讨论'], symbolSize: 38 },
             
-            // 2026年预测数据
-            { name: 'AI代理', value: [2026, 1, 82, '智能服务'], symbolSize: 47 },
-            { name: '脑机接口', value: [2026, 3, 75, '前沿技术'], symbolSize: 44 },
+            // 2026年预测数�?            { name: 'AI代理', value: [2026, 1, 82, '智能服务'], symbolSize: 47 },
+            { name: '脑机接口', value: [2026, 3, 75, '前沿技�?], symbolSize: 44 },
             { name: 'AI情感', value: [2026, 5, 68, '人机交互'], symbolSize: 40 },
             { name: 'AI教育', value: [2026, 7, 85, '教育应用'], symbolSize: 49 }
         ];
 
         const categoryColors = {
-            '技术概念': '#8B5CF6',
+            '技术概�?: '#8B5CF6',
             '核心模型': '#7C3AED',
-            '技术领域': '#3B82F6',
-            '前沿技术': '#0EA5E9',
-            '技术开发': '#06B6D4',
+            '技术领�?: '#3B82F6',
+            '前沿技�?: '#0EA5E9',
+            '技术开�?: '#06B6D4',
             '模型训练': '#0891B2',
             '艺术创作': '#10B981',
             '内容创作': '#14B8A6',
             '语言服务': '#84CC16',
-            '多媒体': '#A3E635',
+            '多媒�?: '#A3E635',
             '音乐创作': '#F59E0B',
             '职场文化': '#F97316',
             '职场态度': '#FB923C',
@@ -161,26 +153,21 @@
             '安全伦理': '#EF4444',
             '安全威胁': '#F87171',
             '隐私保护': '#6366F1',
-            '技术问题': '#8B5CF6',
-            '检索增强': '#3B82F6',
+            '技术问�?: '#8B5CF6',
+            '检索增�?: '#3B82F6',
             '文化影响': '#F59E0B',
-            '核心技术': '#8B5CF6',
+            '核心技�?: '#8B5CF6',
             '科幻讨论': '#6366F1',
             '人工智能': '#06B6D4',
             '智能服务': '#10B981',
             '伦理讨论': '#EF4444',
-            '硬件技术': '#3B82F6',
+            '硬件技�?: '#3B82F6',
             '应用场景': '#10B981',
             '数字孪生': '#8B5CF6',
-            '元宇宙': '#F59E0B',
+            '元宇�?: '#F59E0B',
             '数据科学': '#06B6D4',
-            '多模态': '#8B5CF6',
-            '人机交互': '#EC4899',
-            '技术岗位': '#8B5CF6',
-            '技术方法': '#7C3AED',
-            'AI应用': '#06B6D4',
-            '生活方式': '#84CC16',
-            '内容生产': '#14B8A6'
+            '多模�?: '#8B5CF6',
+            '人机交互': '#EC4899'
         };
 
         function getYearData(year) {
@@ -227,8 +214,7 @@
             // 准备折线图数据点
             const lineData = yearlyData.map(d => [d.year, d.avgHot]);
             
-            // 准备气泡数据（所有年份的所有流行语）
-            const bubbleData = timelineData.map(item => ({
+            // 准备气泡数据（所有年份的所有流行语�?            const bubbleData = timelineData.map(item => ({
                 name: item.name,
                 value: [item.value[0] + (item.value[1] - 1) / 12, item.value[2], item.value[3]],
                 symbolSize: item.symbolSize,
@@ -247,14 +233,14 @@
                     formatter: function(params) {
                         if (params.seriesType === 'line') {
                             const yearData = yearlyData.find(d => d.year === params.value[0]);
-                            return `<strong>${params.value[0]}年</strong><br/>
-                                    平均热度：${params.value[1]}<br/>
+                            return `<strong>${params.value[0]}�?/strong><br/>
+                                    平均热度�?{params.value[1]}<br/>
                                     流行语数量：${yearData ? yearData.count : 0}`;
                         } else {
                             return `<strong>${params.name}</strong><br/>
-                                    时间：${params.value[0].toFixed(2)}年<br/>
-                                    热度：${params.value[1]}<br/>
-                                    类别：${params.value[2]}`;
+                                    时间�?{params.value[0].toFixed(2)}�?br/>
+                                    热度�?{params.value[1]}<br/>
+                                    类别�?{params.value[2]}`;
                         }
                     }
                 },
@@ -320,7 +306,7 @@
                     },
                     {
                         type: 'scatter',
-                        name: '流行语',
+                        name: '流行�?,
                         data: bubbleData,
                         symbolSize: function(params) {
                             return params.symbolSize;
@@ -350,14 +336,12 @@
             selectedYear = year;
             const yearData = getYearData(year);
             
-            // 按月份排序
-            yearData.sort((a, b) => a.value[1] - b.value[1]);
+            // 按月份排�?            yearData.sort((a, b) => a.value[1] - b.value[1]);
             
             const lineData = [];
             const bubbleData = [];
             
-            // 填充所有月份
-            for (let month = 1; month <= 12; month++) {
+            // 填充所有月�?            for (let month = 1; month <= 12; month++) {
                 const monthData = yearData.filter(item => item.value[1] === month);
                 if (monthData.length > 0) {
                     const avgHot = Math.round(monthData.reduce((sum, item) => sum + item.value[2], 0) / monthData.length);
@@ -386,12 +370,12 @@
                     textStyle: { color: '#E8E4D9' },
                     formatter: function(params) {
                         if (params.seriesType === 'line') {
-                            return `<strong>${year}年${params.value[0]}月</strong><br/>平均热度：${params.value[1]}`;
+                            return `<strong>${year}�?{params.value[0]}�?/strong><br/>平均热度�?{params.value[1]}`;
                         } else {
                             return `<strong>${params.name}</strong><br/>
-                                    时间：${year}年${params.value[0]}月<br/>
-                                    热度：${params.value[1]}<br/>
-                                    类别：${params.value[2]}`;
+                                    时间�?{year}�?{params.value[0]}�?br/>
+                                    热度�?{params.value[1]}<br/>
+                                    类别�?{params.value[2]}`;
                         }
                     }
                 },
@@ -414,7 +398,7 @@
                     name: '月份',
                     nameTextStyle: { color: '#A1A1AA' },
                     axisLine: { lineStyle: { color: '#4B5563' } },
-                    axisLabel: { color: '#A1A1AA', formatter: '{value}月' },
+                    axisLabel: { color: '#A1A1AA', formatter: '{value}�? },
                     splitLine: { lineStyle: { color: 'rgba(75, 85, 99, 0.3)' } },
                     min: 0.5,
                     max: 12.5
@@ -457,7 +441,7 @@
                     },
                     {
                         type: 'scatter',
-                        name: '流行语',
+                        name: '流行�?,
                         data: bubbleData,
                         symbolSize: function(params) {
                             return params.symbolSize;
@@ -498,12 +482,10 @@
                 label.textContent = year;
                 label.style.left = `${(index / (years.length - 1)) * 100}%`;
                 label.addEventListener('click', () => {
-                        // 清除之前的选中状态
-                        document.querySelectorAll('.timeline-label').forEach(l => l.classList.remove('active'));
+                        // 清除之前的选中状�?                        document.querySelectorAll('.timeline-label').forEach(l => l.classList.remove('active'));
                         label.classList.add('active');
                         
-                        // 更新视图为月份视图
-                        currentView = 'month';
+                        // 更新视图为月份视�?                        currentView = 'month';
                         updateMonthView(parseInt(year));
                         
                         // 显示返回按钮
@@ -518,7 +500,7 @@
             // 添加返回按钮
             const backBtn = document.createElement('div');
             backBtn.className = 'timeline-back-btn';
-            backBtn.textContent = '← 返回年度视图';
+            backBtn.textContent = '�?返回年度视图';
             backBtn.style.display = 'none';
             backBtn.addEventListener('click', () => {
                 document.querySelectorAll('.timeline-label').forEach(l => l.classList.remove('active'));
@@ -529,8 +511,7 @@
             });
             slider.appendChild(backBtn);
 
-            // 暴露backBtn供外部使用
-            window.timelineBackBtn = backBtn;
+            // 暴露backBtn供外部使�?            window.timelineBackBtn = backBtn;
         }
 
         function showBackButton() {
@@ -553,24 +534,24 @@
                 { name: '生成式AI', category: 0, symbolSize: 70 },
                 { name: '大语言模型', category: 0, symbolSize: 65 },
                 { name: 'AI作画', category: 1, symbolSize: 45 },
-                { name: 'AI写代码', category: 1, symbolSize: 42 },
-                { name: 'AI写论文', category: 1, symbolSize: 40 },
+                { name: 'AI写代�?, category: 1, symbolSize: 42 },
+                { name: 'AI写论�?, category: 1, symbolSize: 40 },
                 { name: 'AI聊天', category: 1, symbolSize: 50 },
                 { name: 'AI配音', category: 1, symbolSize: 38 },
                 { name: 'AI编曲', category: 1, symbolSize: 35 },
-                { name: 'Prompt工程师', category: 2, symbolSize: 52 },
-                { name: '提示词工程', category: 2, symbolSize: 48 },
+                { name: 'Prompt工程�?, category: 2, symbolSize: 52 },
+                { name: '提示词工�?, category: 2, symbolSize: 48 },
                 { name: 'AI炼丹', category: 2, symbolSize: 44 },
-                { name: '智能体', category: 2, symbolSize: 46 },
-                { name: 'RAG技术', category: 2, symbolSize: 40 },
-                { name: 'AI打工人', category: 3, symbolSize: 45 },
+                { name: '智能�?, category: 2, symbolSize: 46 },
+                { name: 'RAG技�?, category: 2, symbolSize: 40 },
+                { name: 'AI打工�?, category: 3, symbolSize: 45 },
                 { name: 'AI摆烂', category: 3, symbolSize: 38 },
                 { name: 'AI导师', category: 3, symbolSize: 42 },
                 { name: 'AI女友', category: 3, symbolSize: 40 },
                 { name: 'AI洗脑', category: 3, symbolSize: 36 },
                 { name: '数字永生', category: 3, symbolSize: 35 },
                 { name: '数字游民', category: 3, symbolSize: 34 },
-                { name: '深度伪造', category: 4, symbolSize: 42 },
+                { name: '深度伪�?, category: 4, symbolSize: 42 },
                 { name: '幻觉攻击', category: 4, symbolSize: 38 },
                 { name: '数据隐私', category: 4, symbolSize: 44 },
                 { name: '模型幻觉', category: 4, symbolSize: 36 }
@@ -580,39 +561,39 @@
                 { source: 'AI', target: '生成式AI', value: 10 },
                 { source: 'AI', target: '大语言模型', value: 10 },
                 { source: '生成式AI', target: 'AI作画', value: 9 },
-                { source: '生成式AI', target: 'AI写代码', value: 8 },
-                { source: '生成式AI', target: 'AI写论文', value: 8 },
+                { source: '生成式AI', target: 'AI写代�?, value: 8 },
+                { source: '生成式AI', target: 'AI写论�?, value: 8 },
                 { source: '生成式AI', target: 'AI聊天', value: 9 },
-                { source: '生成式AI', target: '智能体', value: 8 },
+                { source: '生成式AI', target: '智能�?, value: 8 },
                 { source: '大语言模型', target: 'AI聊天', value: 9 },
-                { source: '大语言模型', target: 'Prompt工程师', value: 8 },
-                { source: '大语言模型', target: '提示词工程', value: 9 },
-                { source: 'Prompt工程师', target: '提示词工程', value: 10 },
-                { source: 'Prompt工程师', target: 'AI炼丹', value: 7 },
-                { source: 'AI炼丹', target: '智能体', value: 8 },
-                { source: '智能体', target: 'RAG技术', value: 7 },
+                { source: '大语言模型', target: 'Prompt工程�?, value: 8 },
+                { source: '大语言模型', target: '提示词工�?, value: 9 },
+                { source: 'Prompt工程�?, target: '提示词工�?, value: 10 },
+                { source: 'Prompt工程�?, target: 'AI炼丹', value: 7 },
+                { source: 'AI炼丹', target: '智能�?, value: 8 },
+                { source: '智能�?, target: 'RAG技�?, value: 7 },
                 { source: 'AI作画', target: 'AI配音', value: 6 },
                 { source: 'AI作画', target: 'AI编曲', value: 5 },
                 { source: 'AI聊天', target: 'AI导师', value: 7 },
                 { source: 'AI聊天', target: 'AI女友', value: 6 },
-                { source: 'AI打工人', target: 'AI摆烂', value: 7 },
-                { source: 'AI打工人', target: '数字游民', value: 6 },
-                { source: 'AI导师', target: 'AI写论文', value: 5 },
+                { source: 'AI打工�?, target: 'AI摆烂', value: 7 },
+                { source: 'AI打工�?, target: '数字游民', value: 6 },
+                { source: 'AI导师', target: 'AI写论�?, value: 5 },
                 { source: 'AI洗脑', target: 'AI作画', value: 5 },
                 { source: 'AI洗脑', target: 'AI聊天', value: 6 },
                 { source: '数字永生', target: 'AI女友', value: 5 },
-                { source: '深度伪造', target: 'AI作画', value: 6 },
-                { source: '深度伪造', target: '幻觉攻击', value: 8 },
+                { source: '深度伪�?, target: 'AI作画', value: 6 },
+                { source: '深度伪�?, target: '幻觉攻击', value: 8 },
                 { source: '幻觉攻击', target: '模型幻觉', value: 7 },
                 { source: '数据隐私', target: 'AI聊天', value: 6 },
-                { source: '数据隐私', target: '深度伪造', value: 7 },
-                { source: 'AI写代码', target: '智能体', value: 6 }
+                { source: '数据隐私', target: '深度伪�?, value: 7 },
+                { source: 'AI写代�?, target: '智能�?, value: 6 }
             ];
 
             const categories = [
                 { name: '核心概念' },
                 { name: '创作应用' },
-                { name: '技术方法' },
+                { name: '技术方�? },
                 { name: '社会文化' },
                 { name: '安全伦理' }
             ];
@@ -627,9 +608,9 @@
                     textStyle: { color: '#E8E4D9' },
                     formatter: function(params) {
                         if (params.dataType === 'node') {
-                            return `<strong>${params.name}</strong><br/>类别：${categories[params.data.category].name}`;
+                            return `<strong>${params.name}</strong><br/>类别�?{categories[params.data.category].name}`;
                         } else if (params.dataType === 'edge') {
-                            return `${params.data.source} → ${params.data.target}<br/>关联强度：${params.data.value}`;
+                            return `${params.data.source} �?${params.data.target}<br/>关联强度�?{params.data.value}`;
                         }
                     }
                 },
@@ -713,11 +694,11 @@
                                 ]
                             },
                             {
-                                name: 'AI代码开发',
+                                name: 'AI代码开�?,
                                 symbolSize: 18,
                                 itemStyle: { color: '#3B82F6' },
                                 children: [
-                                    { name: 'AI写代码', value: 90, symbolSize: 10 },
+                                    { name: 'AI写代�?, value: 90, symbolSize: 10 },
                                     { name: 'Copilot', value: 85, symbolSize: 10 },
                                     { name: 'AI调试', value: 70, symbolSize: 8 }
                                 ]
@@ -759,7 +740,7 @@
                                 ]
                             },
                             {
-                                name: '国产大模型',
+                                name: '国产大模�?,
                                 symbolSize: 18,
                                 itemStyle: { color: '#3B82F6' },
                                 children: [
@@ -772,7 +753,7 @@
                         ]
                     },
                     {
-                        name: 'Agent智能体',
+                        name: 'Agent智能�?,
                         symbolSize: 40,
                         itemStyle: { color: '#8B5CF6' },
                         children: [
@@ -813,13 +794,13 @@
                         itemStyle: { color: '#8B5CF6' },
                         children: [
                             {
-                                name: '提示词设计',
+                                name: '提示词设�?,
                                 symbolSize: 18,
                                 itemStyle: { color: '#3B82F6' },
                                 children: [
-                                    { name: 'Prompt工程师', value: 95, symbolSize: 10 },
-                                    { name: '提示词工程', value: 85, symbolSize: 10 },
-                                    { name: '思维链', value: 78, symbolSize: 9 }
+                                    { name: 'Prompt工程�?, value: 95, symbolSize: 10 },
+                                    { name: '提示词工�?, value: 85, symbolSize: 10 },
+                                    { name: '思维�?, value: 78, symbolSize: 9 }
                                 ]
                             },
                             {
@@ -828,14 +809,14 @@
                                 itemStyle: { color: '#3B82F6' },
                                 children: [
                                     { name: 'AI炼丹', value: 80, symbolSize: 9 },
-                                    { name: 'RAG检索增强', value: 82, symbolSize: 10 },
-                                    { name: '微调技术', value: 75, symbolSize: 8 }
+                                    { name: 'RAG检索增�?, value: 82, symbolSize: 10 },
+                                    { name: '微调技�?, value: 75, symbolSize: 8 }
                                 ]
                             }
                         ]
                     },
                     {
-                        name: '深度学习技术',
+                        name: '深度学习技�?,
                         symbolSize: 40,
                         itemStyle: { color: '#8B5CF6' },
                         children: [
@@ -845,18 +826,18 @@
                                 itemStyle: { color: '#3B82F6' },
                                 children: [
                                     { name: 'Transformer', value: 92, symbolSize: 10 },
-                                    { name: '注意力机制', value: 88, symbolSize: 10 },
+                                    { name: '注意力机�?, value: 88, symbolSize: 10 },
                                     { name: 'Diffusion扩散', value: 85, symbolSize: 9 }
                                 ]
                             },
                             {
-                                name: '核心技术',
+                                name: '核心技�?,
                                 symbolSize: 18,
                                 itemStyle: { color: '#3B82F6' },
                                 children: [
                                     { name: 'AGI通用人工智能', value: 90, symbolSize: 10 },
-                                    { name: '多模态', value: 88, symbolSize: 10 },
-                                    { name: '对齐技术', value: 75, symbolSize: 8 }
+                                    { name: '多模�?, value: 88, symbolSize: 10 },
+                                    { name: '对齐技�?, value: 75, symbolSize: 8 }
                                 ]
                             }
                         ]
@@ -871,7 +852,7 @@
                                 symbolSize: 18,
                                 itemStyle: { color: '#3B82F6' },
                                 children: [
-                                    { name: 'AI打工人', value: 85, symbolSize: 9 },
+                                    { name: 'AI打工�?, value: 85, symbolSize: 9 },
                                     { name: 'AI摆烂', value: 72, symbolSize: 8 },
                                     { name: '数字游民', value: 68, symbolSize: 8 }
                                 ]
@@ -899,7 +880,7 @@
                         ]
                     },
                     {
-                        name: '安全与伦理',
+                        name: '安全与伦�?,
                         symbolSize: 40,
                         itemStyle: { color: '#8B5CF6' },
                         children: [
@@ -908,7 +889,7 @@
                                 symbolSize: 18,
                                 itemStyle: { color: '#3B82F6' },
                                 children: [
-                                    { name: '深度伪造', value: 88, symbolSize: 10 },
+                                    { name: '深度伪�?, value: 88, symbolSize: 10 },
                                     { name: '幻觉攻击', value: 72, symbolSize: 8 },
                                     { name: '数据隐私', value: 85, symbolSize: 9 }
                                 ]
@@ -938,9 +919,9 @@
                     textStyle: { color: '#E8E4D9' },
                     formatter: function(params) {
                         if (params.data.children) {
-                            return `<strong>${params.name}</strong><br/><span style="color:#A78BFA">├ 子分支节点</span>`;
+                            return `<strong>${params.name}</strong><br/><span style="color:#A78BFA">�?分支节点</span>`;
                         }
-                        return `<strong>${params.name}</strong><br/>热度指数：${params.data.value || 'N/A'}`;
+                        return `<strong>${params.name}</strong><br/>热度指数�?{params.data.value || 'N/A'}`;
                     }
                 },
                 series: [{
