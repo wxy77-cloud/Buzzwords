@@ -39,13 +39,12 @@
                 </select>
                 <select id="typeFilter">
                     <option value="all">全部类型</option>
-                    <option value="职场">职场类</option>
-                    <option value="情绪">情绪类</option>
-                    <option value="技术">技术类</option>
-                    <option value="社交">社交类</option>
-                    <option value="哲学">哲学类</option>
-                    <option value="社会">社会类</option>
-                    <option value="教育">教育类</option>
+                    <option value="科技概念">科技概念</option>
+                    <option value="生活场景">生活场景</option>
+                    <option value="情绪表达">情绪表达</option>
+                    <option value="身份关系">身份关系</option>
+                    <option value="热点文化">热点文化</option>
+                    <option value="面向学术">面向学术</option>
                 </select>
                 <input type="text" id="keywordSearch" placeholder="搜索流行语关键词">
                 <button class="btn" id="searchBtn">搜索</button>
@@ -61,9 +60,9 @@
         <div class="card">
             <h2>数据集总览</h2>
             <div class="stat-grid" style="margin-top:1rem;">
-                <div class="stat-card"><h3>18条</h3><p>累计收录流行语</p></div>
+                <div class="stat-card"><h3>600条</h3><p>累计收录流行语</p></div>
                 <div class="stat-card"><h3>B站</h3><p>核心传播平台（42%）</p></div>
-                <div class="stat-card"><h3>效率焦虑</h3><p>高频社会情绪（58%）</p></div>
+                <div class="stat-card"><h3>技术期待</h3><p>高频社会情绪（58%）</p></div>
             </div>
         </div>
 
@@ -76,30 +75,30 @@
             <div class="geology-timeline">
                 <div class="stratum stratum-2025">
                     <div class="stratum-label">
-                        <span class="era-badge">2025</span>
-                        <span class="era-title">表层·新生代</span>
+                        <span class="era-badge">2023至今</span>
+                        <span class="era-title">表层·AI共创期</span>
                         <span class="depth-indicator">深度: 0-15cm</span>
                     </div>
                     <div class="fossil-cards">
                         <div class="fossil-card surface">
-                            <span class="status-badge status-new">新生期</span>
+                            <span class="status-badge status-new">初现期</span>
                             <span class="archive-id">AI-2025-001</span>
                             <h3>AI洗脑</h3>
-                            <p>情绪 | 深度: 5cm</p>
+                            <p>情绪表达 | 深度: 5cm</p>
                             <button class="btn" onclick="location.href='detail-ai-brainwash.html'">发掘详情</button>
                         </div>
                         <div class="fossil-card surface">
-                            <span class="status-badge status-new">新生期</span>
+                            <span class="status-badge status-new">初现期</span>
                             <span class="archive-id">AI-2025-002</span>
                             <h3>AI女友</h3>
-                            <p>社交 | 深度: 8cm</p>
+                            <p>身份关系 | 深度: 8cm</p>
                             <button class="btn" onclick="location.href='detail-ai-girlfriend.html'">发掘详情</button>
                         </div>
                         <div class="fossil-card surface">
-                            <span class="status-badge status-peak">鼎盛期</span>
+                            <span class="status-badge status-peak">泛化期</span>
                             <span class="archive-id">AI-2025-003</span>
                             <h3>生成式AI</h3>
-                            <p>技术 | 深度: 12cm</p>
+                            <p>科技概念 | 深度: 12cm</p>
                             <button class="btn" onclick="location.href='detail-generative.html'">发掘详情</button>
                         </div>
                     </div>
@@ -113,65 +112,65 @@
 
                 <div class="stratum stratum-2024">
                     <div class="stratum-label">
-                        <span class="era-badge">2024</span>
-                        <span class="era-title">中层·中生代</span>
+                        <span class="era-badge">2008-2023</span>
+                        <span class="era-title">中层·高涨成熟期</span>
                         <span class="depth-indicator">深度: 15-40cm</span>
                     </div>
                     <div class="fossil-cards">
                         <div class="fossil-card mid-depth">
-                            <span class="status-badge status-decline">衰减期</span>
+                            <span class="status-badge status-decline">沉淀期</span>
                             <span class="archive-id">AI-2024-001</span>
                             <h3>Prompt工程师</h3>
-                            <p>技术 | 深度: 18cm</p>
+                            <p>科技概念 | 深度: 18cm</p>
                             <button class="btn" onclick="location.href='detail-prompt.html'">发掘详情</button>
                         </div>
                         <div class="fossil-card mid-depth">
-                            <span class="status-badge status-decline">衰减期</span>
+                            <span class="status-badge status-decline">沉淀期</span>
                             <span class="archive-id">AI-2024-002</span>
                             <h3>数字游民</h3>
-                            <p>职场 | 深度: 22cm</p>
+                            <p>生活场景 | 深度: 22cm</p>
                             <button class="btn" onclick="location.href='detail-digital-nomad.html'">发掘详情</button>
                         </div>
                         <div class="fossil-card mid-depth">
-                            <span class="status-badge status-peak">鼎盛期</span>
+                            <span class="status-badge status-peak">泛化期</span>
                             <span class="archive-id">AI-2024-003</span>
                             <h3>数字永生</h3>
-                            <p>哲学 | 深度: 26cm</p>
+                            <p>热点文化 | 深度: 26cm</p>
                             <button class="btn" onclick="location.href='detail-digital-immortal.html'">发掘详情</button>
                         </div>
                         <div class="fossil-card mid-depth">
-                            <span class="status-badge status-spread">扩散期</span>
+                            <span class="status-badge status-spread">爆发期</span>
                             <span class="archive-id">AI-2024-004</span>
                             <h3>智能体</h3>
-                            <p>技术 | 深度: 30cm</p>
+                            <p>科技概念 | 深度: 30cm</p>
                             <button class="btn" onclick="location.href='detail-agent.html'">发掘详情</button>
                         </div>
                         <div class="fossil-card mid-depth">
-                            <span class="status-badge status-spread">扩散期</span>
+                            <span class="status-badge status-spread">爆发期</span>
                             <span class="archive-id">AI-2024-005</span>
                             <h3>幻觉攻击</h3>
-                            <p>技术 | 深度: 33cm</p>
+                            <p>科技概念 | 深度: 33cm</p>
                             <button class="btn" onclick="location.href='detail-hallucination.html'">发掘详情</button>
                         </div>
                         <div class="fossil-card mid-depth">
-                            <span class="status-badge status-spread">扩散期</span>
+                            <span class="status-badge status-spread">爆发期</span>
                             <span class="archive-id">AI-2024-006</span>
                             <h3>提示词工程</h3>
-                            <p>技术 | 深度: 36cm</p>
+                            <p>科技概念 | 深度: 36cm</p>
                             <button class="btn" onclick="location.href='detail-prompt-eng.html'">发掘详情</button>
                         </div>
                         <div class="fossil-card mid-depth">
-                            <span class="status-badge status-spread">扩散期</span>
+                            <span class="status-badge status-spread">爆发期</span>
                             <span class="archive-id">AI-2024-007</span>
                             <h3>数据隐私</h3>
-                            <p>社会 | 深度: 38cm</p>
+                            <p>热点文化 | 深度: 38cm</p>
                             <button class="btn" onclick="location.href='detail-data-privacy.html'">发掘详情</button>
                         </div>
                         <div class="fossil-card mid-depth">
-                            <span class="status-badge status-spread">扩散期</span>
+                            <span class="status-badge status-spread">爆发期</span>
                             <span class="archive-id">AI-2024-008</span>
                             <h3>AI导师</h3>
-                            <p>教育 | 深度: 40cm</p>
+                            <p>面向学术 | 深度: 40cm</p>
                             <button class="btn" onclick="location.href='detail-ai-mentor.html'">发掘详情</button>
                         </div>
                     </div>
@@ -185,58 +184,58 @@
 
                 <div class="stratum stratum-2023">
                     <div class="stratum-label">
-                        <span class="era-badge">2023</span>
-                        <span class="era-title">深层·古生代</span>
+                        <span class="era-badge">2003-2007</span>
+                        <span class="era-title">深层·萌芽上升期</span>
                         <span class="depth-indicator">深度: 40-70cm</span>
                     </div>
                     <div class="fossil-cards">
                         <div class="fossil-card deep">
-                            <span class="status-badge status-peak">鼎盛期</span>
+                            <span class="status-badge status-peak">泛化期</span>
                             <span class="archive-id">AI-2023-001</span>
                             <h3>AI打工人</h3>
-                            <p>职场 | 深度: 45cm</p>
+                            <p>生活场景 | 深度: 45cm</p>
                             <button class="btn" onclick="location.href='detail-ai-worker.html'">发掘详情</button>
                         </div>
                         <div class="fossil-card deep">
-                            <span class="status-badge status-dormant">休眠期</span>
+                            <span class="status-badge status-dormant">沉淀期</span>
                             <span class="archive-id">AI-2023-002</span>
                             <h3>AI摆烂</h3>
-                            <p>情绪 | 深度: 48cm</p>
+                            <p>情绪表达 | 深度: 48cm</p>
                             <button class="btn" onclick="location.href='detail-ai-lazy.html'">发掘详情</button>
                         </div>
                         <div class="fossil-card deep">
-                            <span class="status-badge status-dormant">休眠期</span>
+                            <span class="status-badge status-dormant">沉淀期</span>
                             <span class="archive-id">AI-2023-003</span>
                             <h3>AI炼丹</h3>
-                            <p>技术 | 深度: 52cm</p>
+                            <p>科技概念 | 深度: 52cm</p>
                             <button class="btn" onclick="location.href='detail-ai-alchemy.html'">发掘详情</button>
                         </div>
                         <div class="fossil-card deep">
-                            <span class="status-badge status-peak">鼎盛期</span>
+                            <span class="status-badge status-peak">泛化期</span>
                             <span class="archive-id">AI-2023-004</span>
                             <h3>AI作画</h3>
-                            <p>技术 | 深度: 55cm</p>
+                            <p>科技概念 | 深度: 55cm</p>
                             <button class="btn" onclick="location.href='detail-ai-art.html'">发掘详情</button>
                         </div>
                         <div class="fossil-card deep">
-                            <span class="status-badge status-dormant">休眠期</span>
+                            <span class="status-badge status-dormant">沉淀期</span>
                             <span class="archive-id">AI-2023-005</span>
                             <h3>深度伪造</h3>
-                            <p>技术 | 深度: 58cm</p>
+                            <p>科技概念 | 深度: 58cm</p>
                             <button class="btn" onclick="location.href='detail-deepfake.html'">发掘详情</button>
                         </div>
                         <div class="fossil-card deep">
-                            <span class="status-badge status-peak">鼎盛期</span>
+                            <span class="status-badge status-peak">泛化期</span>
                             <span class="archive-id">AI-2023-006</span>
                             <h3>算法推荐</h3>
-                            <p>技术 | 深度: 62cm</p>
+                            <p>科技概念 | 深度: 62cm</p>
                             <button class="btn" onclick="location.href='detail-algo-rec.html'">发掘详情</button>
                         </div>
                         <div class="fossil-card deep">
-                            <span class="status-badge status-dormant">休眠期</span>
+                            <span class="status-badge status-dormant">沉淀期</span>
                             <span class="archive-id">AI-2023-007</span>
                             <h3>边缘计算</h3>
-                            <p>技术 | 深度: 68cm</p>
+                            <p>科技概念 | 深度: 68cm</p>
                             <button class="btn" onclick="location.href='detail-edge.html'">发掘详情</button>
                         </div>
                     </div>
@@ -260,24 +259,24 @@
     <script>
         // 流行语数据
         const trendingData = [
-            { id: 'AI-2025-001', name: 'AI洗脑', type: '情绪', year: '2025', depth: '5cm', status: '新生期', statusClass: 'status-new', url: 'detail-ai-brainwash.html' },
-            { id: 'AI-2025-002', name: 'AI女友', type: '社交', year: '2025', depth: '8cm', status: '新生期', statusClass: 'status-new', url: 'detail-ai-girlfriend.html' },
-            { id: 'AI-2025-003', name: '生成式AI', type: '技术', year: '2025', depth: '12cm', status: '鼎盛期', statusClass: 'status-peak', url: 'detail-generative.html' },
-            { id: 'AI-2024-001', name: 'Prompt工程师', type: '技术', year: '2024', depth: '18cm', status: '衰减期', statusClass: 'status-decline', url: 'detail-prompt.html' },
-            { id: 'AI-2024-002', name: '数字游民', type: '职场', year: '2024', depth: '22cm', status: '衰减期', statusClass: 'status-decline', url: 'detail-digital-nomad.html' },
-            { id: 'AI-2024-003', name: '数字永生', type: '哲学', year: '2024', depth: '26cm', status: '鼎盛期', statusClass: 'status-peak', url: 'detail-digital-immortal.html' },
-            { id: 'AI-2024-004', name: '智能体', type: '技术', year: '2024', depth: '30cm', status: '扩散期', statusClass: 'status-spread', url: 'detail-agent.html' },
-            { id: 'AI-2024-005', name: '幻觉攻击', type: '技术', year: '2024', depth: '33cm', status: '扩散期', statusClass: 'status-spread', url: 'detail-hallucination.html' },
-            { id: 'AI-2024-006', name: '提示词工程', type: '技术', year: '2024', depth: '36cm', status: '扩散期', statusClass: 'status-spread', url: 'detail-prompt-eng.html' },
-            { id: 'AI-2024-007', name: '数据隐私', type: '社会', year: '2024', depth: '38cm', status: '扩散期', statusClass: 'status-spread', url: 'detail-data-privacy.html' },
-            { id: 'AI-2024-008', name: 'AI导师', type: '教育', year: '2024', depth: '40cm', status: '扩散期', statusClass: 'status-spread', url: 'detail-ai-mentor.html' },
-            { id: 'AI-2023-001', name: 'AI打工人', type: '职场', year: '2023', depth: '45cm', status: '休眠期', statusClass: 'status-dormant', url: 'detail-ai-worker.html' },
-            { id: 'AI-2023-002', name: 'AI摆烂', type: '情绪', year: '2023', depth: '48cm', status: '休眠期', statusClass: 'status-dormant', url: 'detail-ai-lazy.html' },
-            { id: 'AI-2023-003', name: 'AI炼丹', type: '技术', year: '2023', depth: '52cm', status: '休眠期', statusClass: 'status-dormant', url: 'detail-ai-alchemy.html' },
-            { id: 'AI-2023-004', name: 'AI作画', type: '技术', year: '2023', depth: '55cm', status: '休眠期', statusClass: 'status-dormant', url: 'detail-ai-art.html' },
-            { id: 'AI-2023-005', name: '深度伪造', type: '技术', year: '2023', depth: '58cm', status: '休眠期', statusClass: 'status-dormant', url: 'detail-deepfake.html' },
-            { id: 'AI-2023-006', name: '算法推荐', type: '技术', year: '2023', depth: '62cm', status: '休眠期', statusClass: 'status-dormant', url: 'detail-algo-rec.html' },
-            { id: 'AI-2023-007', name: '边缘计算', type: '技术', year: '2023', depth: '68cm', status: '休眠期', statusClass: 'status-dormant', url: 'detail-edge.html' }
+            { id: 'AI-2025-001', name: 'AI洗脑', type: '情绪表达', year: '2025', depth: '5cm', status: '初现期', statusClass: 'status-new', url: 'detail-ai-brainwash.html' },
+            { id: 'AI-2025-002', name: 'AI女友', type: '身份关系', year: '2025', depth: '8cm', status: '初现期', statusClass: 'status-new', url: 'detail-ai-girlfriend.html' },
+            { id: 'AI-2025-003', name: '生成式AI', type: '科技概念', year: '2025', depth: '12cm', status: '泛化期', statusClass: 'status-peak', url: 'detail-generative.html' },
+            { id: 'AI-2024-001', name: 'Prompt工程师', type: '科技概念', year: '2024', depth: '18cm', status: '沉淀期', statusClass: 'status-decline', url: 'detail-prompt.html' },
+            { id: 'AI-2024-002', name: '数字游民', type: '生活场景', year: '2024', depth: '22cm', status: '沉淀期', statusClass: 'status-decline', url: 'detail-digital-nomad.html' },
+            { id: 'AI-2024-003', name: '数字永生', type: '热点文化', year: '2024', depth: '26cm', status: '泛化期', statusClass: 'status-peak', url: 'detail-digital-immortal.html' },
+            { id: 'AI-2024-004', name: '智能体', type: '科技概念', year: '2024', depth: '30cm', status: '爆发期', statusClass: 'status-spread', url: 'detail-agent.html' },
+            { id: 'AI-2024-005', name: '幻觉攻击', type: '科技概念', year: '2024', depth: '33cm', status: '爆发期', statusClass: 'status-spread', url: 'detail-hallucination.html' },
+            { id: 'AI-2024-006', name: '提示词工程', type: '科技概念', year: '2024', depth: '36cm', status: '爆发期', statusClass: 'status-spread', url: 'detail-prompt-eng.html' },
+            { id: 'AI-2024-007', name: '数据隐私', type: '热点文化', year: '2024', depth: '38cm', status: '爆发期', statusClass: 'status-spread', url: 'detail-data-privacy.html' },
+            { id: 'AI-2024-008', name: 'AI导师', type: '面向学术', year: '2024', depth: '40cm', status: '爆发期', statusClass: 'status-spread', url: 'detail-ai-mentor.html' },
+            { id: 'AI-2023-001', name: 'AI打工人', type: '生活场景', year: '2023', depth: '45cm', status: '沉淀期', statusClass: 'status-dormant', url: 'detail-ai-worker.html' },
+            { id: 'AI-2023-002', name: 'AI摆烂', type: '情绪表达', year: '2023', depth: '48cm', status: '沉淀期', statusClass: 'status-dormant', url: 'detail-ai-lazy.html' },
+            { id: 'AI-2023-003', name: 'AI炼丹', type: '科技概念', year: '2023', depth: '52cm', status: '沉淀期', statusClass: 'status-dormant', url: 'detail-ai-alchemy.html' },
+            { id: 'AI-2023-004', name: 'AI作画', type: '科技概念', year: '2023', depth: '55cm', status: '沉淀期', statusClass: 'status-dormant', url: 'detail-ai-art.html' },
+            { id: 'AI-2023-005', name: '深度伪造', type: '科技概念', year: '2023', depth: '58cm', status: '沉淀期', statusClass: 'status-dormant', url: 'detail-deepfake.html' },
+            { id: 'AI-2023-006', name: '算法推荐', type: '科技概念', year: '2023', depth: '62cm', status: '沉淀期', statusClass: 'status-dormant', url: 'detail-algo-rec.html' },
+            { id: 'AI-2023-007', name: '边缘计算', type: '科技概念', year: '2023', depth: '68cm', status: '沉淀期', statusClass: 'status-dormant', url: 'detail-edge.html' }
         ];
 
         // 筛选搜索功能

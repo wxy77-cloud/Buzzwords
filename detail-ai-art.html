@@ -43,7 +43,7 @@
 
     <div class="container">
         <div class="card info-card">
-            <span class="status-badge status-peak">鼎盛期</span>
+            <span class="status-badge status-peak">泛化期</span>
             <span class="archive-id">AI-2023-004</span>
             <h1>AI作画</h1>
             <p><strong>首次出现：</strong>2023.04（Midjourney/Discord社区）</p>
@@ -139,7 +139,7 @@
         <div class="card">
             <h2>四、社会心理分析</h2>
             <div id="radarChart" class="chart-box"></div>
-            <p>核心情绪：惊叹(9.2)、争议(7.8)，反映传统艺术界与新技术的碰撞与融合。</p>
+            <p>核心情绪：娱乐狂欢(9.2)、技术期待(8.5)、身份认同(7.8)，反映AI作画带来的创作解放与身份重构。</p>
         </div>
 
         <div class="card">
@@ -206,11 +206,11 @@
                 textStyle: { color: '#4A4A4A', fontSize: 14, fontWeight: 'bold' }
             },
             radar: {
-                indicator: [{ name: '兴奋', max: 10 }, { name: '好奇', max: 10 }, { name: '焦虑', max: 10 }, { name: '排斥', max: 10 }, { name: '接纳', max: 10 }],
+                indicator: [{ name: '技术期待', max: 10 }, { name: '风险焦虑', max: 10 }, { name: '自嘲宣泄', max: 10 }, { name: '情绪疗愈', max: 10 }, { name: '身份认同', max: 10 }, { name: '关系重构', max: 10 }, { name: '公共记忆', max: 10 }, { name: '娱乐狂欢', max: 10 }, { name: '消费参与', max: 10 }],
                 shape: 'polygon',
                 radius: '65%',
                 splitNumber: 5,
-                axisName: { color: '#4A4A4A', fontSize: 12 },
+                axisName: { color: '#4A4A4A', fontSize: 10 },
                 splitLine: { lineStyle: { color: 'rgba(113,87,153,0.2)' } },
                 splitArea: { areaStyle: { color: ['rgba(113,87,153,0.08)', 'rgba(201,169,98,0.08)', 'rgba(113,87,153,0.05)', 'rgba(201,169,98,0.05)', 'rgba(113,87,153,0.03)'] } },
                 axisLine: { lineStyle: { color: 'rgba(113,87,153,0.3)' } }
@@ -222,7 +222,7 @@
                 lineStyle: { color: '#715799', width: 2 },
                 areaStyle: { color: 'rgba(113,87,153,0.3)', opacity: 0.6 },
                 itemStyle: { color: '#715799', borderColor: '#fff', borderWidth: 2 },
-                data: [{ value: [8.2, 8.5, 4.5, 3.2, 7.8], name: 'AI作画' }]
+                data: [{ value: [8.5, 4.8, 6.2, 7.2, 7.8, 6.8, 5.5, 9.2, 8.2], name: 'AI作画' }]
             }]
         });
 

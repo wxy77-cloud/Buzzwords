@@ -42,7 +42,7 @@
 
     <div class="container">
         <div class="card info-card">
-            <span class="status-badge status-dormant">休眠期</span>
+            <span class="status-badge status-dormant">沉淀期</span>
             <span class="archive-id">AI-2023-003</span>
             <h1>AI炼丹</h1>
             <p><strong>首次出现：</strong>2023.03（GitHub机器学习社区）</p>
@@ -138,7 +138,7 @@
         <div class="card">
             <h2>四、社会心理分析</h2>
             <div id="radarChart" class="chart-box"></div>
-            <p>核心情绪：无奈(7.5)、自嘲(7.2)，反映AI从业者面对技术不确定性的复杂心态。</p>
+            <p>核心情绪：自嘲宣泄(8.5)、风险焦虑(7.8)、技术期待(7.2)，反映AI从业者面对技术不确定性的自嘲与期待。</p>
         </div>
 
         <div class="card">
@@ -205,11 +205,11 @@
                 textStyle: { color: '#4A4A4A', fontSize: 14, fontWeight: 'bold' }
             },
             radar: {
-                indicator: [{ name: '无奈', max: 10 }, { name: '自嘲', max: 10 }, { name: '自豪', max: 10 }, { name: '焦虑', max: 10 }, { name: '期待', max: 10 }],
+                indicator: [{ name: '技术期待', max: 10 }, { name: '风险焦虑', max: 10 }, { name: '自嘲宣泄', max: 10 }, { name: '情绪疗愈', max: 10 }, { name: '身份认同', max: 10 }, { name: '关系重构', max: 10 }, { name: '公共记忆', max: 10 }, { name: '娱乐狂欢', max: 10 }, { name: '消费参与', max: 10 }],
                 shape: 'polygon',
                 radius: '65%',
                 splitNumber: 5,
-                axisName: { color: '#4A4A4A', fontSize: 12 },
+                axisName: { color: '#4A4A4A', fontSize: 10 },
                 splitLine: { lineStyle: { color: 'rgba(113,87,153,0.2)' } },
                 splitArea: { areaStyle: { color: ['rgba(113,87,153,0.08)', 'rgba(201,169,98,0.08)', 'rgba(113,87,153,0.05)', 'rgba(201,169,98,0.05)', 'rgba(113,87,153,0.03)'] } },
                 axisLine: { lineStyle: { color: 'rgba(113,87,153,0.3)' } }
@@ -221,7 +221,7 @@
                 lineStyle: { color: '#715799', width: 2 },
                 areaStyle: { color: 'rgba(113,87,153,0.3)', opacity: 0.6 },
                 itemStyle: { color: '#715799', borderColor: '#fff', borderWidth: 2 },
-                data: [{ value: [7.5, 7.2, 5.8, 6.2, 7.0], name: 'AI炼丹' }]
+                data: [{ value: [7.2, 7.8, 8.5, 6.2, 7.5, 5.8, 4.8, 7.2, 5.5], name: 'AI炼丹' }]
             }]
         });
 
